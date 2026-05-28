@@ -1,0 +1,45 @@
+{
+  "common": {
+    "title": "IdeaTok 控制台"
+  },
+  "login": {
+    "titleLogin": "登录",
+    "titleRegister": "注册账户",
+    "meta": "在本地生成并安全保存创意的 AI 组织服务",
+    "emailLabel": "电子邮箱",
+    "emailPlaceholder": "请输入您的电子邮箱",
+    "passwordLabel": "密码",
+    "passwordPlaceholder": "请输入您的密码",
+    "btnEmail": "使用邮箱继续",
+    "btnRegister": "注册",
+    "btnLoading": "处理中...",
+    "btnGoogle": "使用 Google 登录",
+    "btnKakao": "使用 Kakao 登录",
+    "registerSuccess": "已发送验证邮件，请检查您的收件箱。",
+    "switchLogin": "已有账户？登录",
+    "switchRegister": "没有账户？注册"
+  },
+  "dashboard": {
+    "filterAll": "所有创意",
+    "filterStarred": "收藏夹",
+    "emptyList": "尚未检测到创意。尝试收集更多日常日志！",
+    "confirmDelete": "您确定要删除这个创意吗？"
+  },
+  "ideas": {
+    "loading": "正在打开创意保险库...",
+    "back": "返回控制台",
+    "contextTitle": "融合上下文路径",
+    "businessTitle": "商业模式设计框架",
+    "business": {
+      "target": "目标客群",
+      "problem": "直面的核心问题",
+      "solution": "提议的解决方案",
+      "revenue": "盈利模式"
+    },
+    "promptTitle": "AI 商业加速工作区",
+    "prompt": {
+      "copy": "复制",
+      "copied": "复制成功 ✓"
+    }
+  }
+}

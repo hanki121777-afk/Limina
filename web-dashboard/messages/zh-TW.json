@@ -1,0 +1,45 @@
+{
+  "common": {
+    "title": "IdeaTok 控制台"
+  },
+  "login": {
+    "titleLogin": "登錄",
+    "titleRegister": "註冊帳戶",
+    "meta": "在本地生成並安全保存創意的 AI 組織服務",
+    "emailLabel": "電子郵件",
+    "emailPlaceholder": "請輸入您的電子郵件",
+    "passwordLabel": "密碼",
+    "passwordPlaceholder": "請輸入您的密碼",
+    "btnEmail": "使用郵箱繼續",
+    "btnRegister": "註冊",
+    "btnLoading": "處理中...",
+    "btnGoogle": "使用 Google 登錄",
+    "btnKakao": "使用 Kakao 登錄",
+    "registerSuccess": "已發送驗證郵件，请檢查您的收件箱。",
+    "switchLogin": "已有帳戶？登錄",
+    "switchRegister": "沒有帳戶？註冊"
+  },
+  "dashboard": {
+    "filterAll": "所有創意",
+    "filterStarred": "收藏夾",
+    "emptyList": "尚未檢測到創意。嘗試收集更多日常日誌！",
+    "confirmDelete": "您確定要刪除這個創意嗎？"
+  },
+  "ideas": {
+    "loading": "正在打開創意保險庫...",
+    "back": "返回控制台",
+    "contextTitle": "融合上下文路徑",
+    "businessTitle": "商業模式設計框架",
+    "business": {
+      "target": "目標客群",
+      "problem": "直面的核心問題",
+      "solution": "提議的解決方案",
+      "revenue": "盈利模式"
+    },
+    "promptTitle": "AI 商業加速工作區",
+    "prompt": {
+      "copy": "複製",
+      "copied": "複製成功 ✓"
+    }
+  }
+}

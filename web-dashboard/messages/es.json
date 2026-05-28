@@ -1,0 +1,45 @@
+{
+  "common": {
+    "title": "IdeaTok Panel"
+  },
+  "login": {
+    "titleLogin": "Iniciar Sesión",
+    "titleRegister": "Crear Cuenta",
+    "meta": "Servicio de organización y generación de ideas de IA en el dispositivo",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "Introduce tu correo electrónico",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "Introduce tu contraseña",
+    "btnEmail": "Continuar con correo electrónico",
+    "btnRegister": "Registrarse",
+    "btnLoading": "Procesando...",
+    "btnGoogle": "Continuar con Google",
+    "btnKakao": "Continuar con Kakao",
+    "registerSuccess": "Se ha enviado un correo de verificación. Por favor, compruebe su bandeja de entrada.",
+    "switchLogin": "¿Ya tienes una cuenta? Iniciar sesión",
+    "switchRegister": "¿No tienes una cuenta? Registrarse"
+  },
+  "dashboard": {
+    "filterAll": "Todas las Ideas",
+    "filterStarred": "Favoritos",
+    "emptyList": "No se han detectado ideas aún. ¡Intente recopilar más registros diarios!",
+    "confirmDelete": "¿Está seguro de que desea eliminar esta idea?"
+  },
+  "ideas": {
+    "loading": "Abriendo la bóveda de ideas...",
+    "back": "Volver al Panel",
+    "contextTitle": "RUTA DE CONTEXTO DE FUSIÓN",
+    "businessTitle": "DISEÑO DE MODELO DE NEGOCIO",
+    "business": {
+      "target": "Público Objetivo",
+      "problem": "Problema Principal",
+      "solution": "Solución Propuesta",
+      "revenue": "Modelo de Ingresos"
+    },
+    "promptTitle": "ESPACIO DE ACELERACIÓN DE IA",
+    "prompt": {
+      "copy": "Copiar",
+      "copied": "Copiado ✓"
+    }
+  }
+}

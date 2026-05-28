@@ -1,0 +1,45 @@
+{
+  "common": {
+    "title": "IdeaTok 대시보드"
+  },
+  "login": {
+    "titleLogin": "시작하기",
+    "titleRegister": "계정 만들기",
+    "meta": "아이디어를 생성하고 보관하는 온디바이스 서비스",
+    "emailLabel": "이메일 주소",
+    "emailPlaceholder": "이메일 주소를 입력하세요",
+    "passwordLabel": "비밀번호",
+    "passwordPlaceholder": "비밀번호를 입력하세요",
+    "btnEmail": "이메일로 계속하기",
+    "btnRegister": "가입 완료",
+    "btnLoading": "처리 중...",
+    "btnGoogle": "Google로 시작하기",
+    "btnKakao": "카카오로 시작하기",
+    "registerSuccess": "가입 확인 이메일이 발송되었습니다. 이메일을 확인해 주세요.",
+    "switchLogin": "이미 계정이 있으신가요? 로그인",
+    "switchRegister": "계정이 없으신가요? 회원가입"
+  },
+  "dashboard": {
+    "filterAll": "전체 아이디어",
+    "filterStarred": "즐겨찾기",
+    "emptyList": "아직 포착된 아이디어가 없습니다. 일상에서 더 많은 영감을 수집해 보세요!",
+    "confirmDelete": "이 아이디어를 삭제하시겠습니까? (로컬 보관 기한 내 복구 가능)"
+  },
+  "ideas": {
+    "loading": "아이디어 분석 보관함을 여는 중...",
+    "back": "대시보드로 돌아가기",
+    "contextTitle": "융합 컨텍스트 경로",
+    "businessTitle": "비즈니스 모델 설계 뼈대",
+    "business": {
+      "target": "타겟 고객군 (Target Audience)",
+      "problem": "직면한 직관적 문제 (Core Problem)",
+      "solution": "제안하는 해결 솔루션 (Proposed Solution)",
+      "revenue": "수익 창출 방식 (Revenue Stream)"
+    },
+    "promptTitle": "AI 비즈니스 엑셀러레이팅 워크스페이스",
+    "prompt": {
+      "copy": "복사",
+      "copied": "복사 완료 ✓"
+    }
+  }
+}

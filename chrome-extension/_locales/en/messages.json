@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "IdeaTok - AI Idea Collector",
+    "description": "The name of the extension."
+  },
+  "extDesc": {
+    "message": "Lightweight client that collects interesting text inputs locally and forwards them to IdeaTok's AI engine.",
+    "description": "The description of the extension."
+  }
+}

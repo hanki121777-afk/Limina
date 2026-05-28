@@ -1,0 +1,45 @@
+{
+  "common": {
+    "title": "IdeaTok Dashboard"
+  },
+  "login": {
+    "titleLogin": "Get Started",
+    "titleRegister": "Create Account",
+    "meta": "On-device AI Idea generator & organizer service",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "btnEmail": "Continue with Email",
+    "btnRegister": "Sign Up",
+    "btnLoading": "Processing...",
+    "btnGoogle": "Continue with Google",
+    "btnKakao": "Continue with Kakao",
+    "registerSuccess": "Verification email has been sent. Please check your inbox.",
+    "switchLogin": "Already have an account? Sign In",
+    "switchRegister": "Don't have an account? Sign Up"
+  },
+  "dashboard": {
+    "filterAll": "All Ideas",
+    "filterStarred": "Favorites",
+    "emptyList": "No ideas detected yet. Try collecting more daily logs!",
+    "confirmDelete": "Are you sure you want to delete this idea?"
+  },
+  "ideas": {
+    "loading": "Opening Idea Vault...",
+    "back": "Back to Dashboard",
+    "contextTitle": "FUSION CONTEXT PATH",
+    "businessTitle": "BUSINESS BLUEPRINT",
+    "business": {
+      "target": "Target Audience",
+      "problem": "Core Problem",
+      "solution": "Proposed Solution",
+      "revenue": "Revenue Stream"
+    },
+    "promptTitle": "AI ACCELERATING WORKSPACE",
+    "prompt": {
+      "copy": "Copy",
+      "copied": "Copied ✓"
+    }
+  }
+}

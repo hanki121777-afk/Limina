@@ -1,0 +1,36 @@
+# 의존성
+node_modules/
+*/node_modules/
+
+# 빌드 결과물
+dist/
+build/
+out/
+.next/
+*.exe
+*.dmg
+*.AppImage
+
+# 환경변수 (절대 커밋 금지!)
+.env
+.env.local
+.env.production
+*/.env
+*/.env.local
+
+# 로그
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Electron
+release/
+dist_electron/
