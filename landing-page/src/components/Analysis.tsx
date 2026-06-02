@@ -20,80 +20,73 @@ export default function Analysis() {
   const [scoreText, setScoreText] = useState('score: --- / 10');
   const [badgePulse, setBadgePulse] = useState(false);
 
-  const startAnalysisAnimation = async () => {
-    if (animating) return;
-    setAnimating(true);
-
-    // Reset
-    setScanActive(false);
-    setLeftLinesActive([]);
-    setLeftLinesDone([]);
-    setRightLinesActive([]);
-    setRightLinesDone([]);
-    setIsComputing(false);
-    setIconSpin(false);
-    setScoreText('score: --- / 10');
-    setBadgePulse(false);
-
-    const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
-
-    await sleep(500);
-
-    // Phase 1: Scan beam sweeps down left panel
-    setScanActive(true);
-
-    for (let i = 0; i < 11; i++) {
-      setLeftLinesActive([i]);
-      await sleep(180);
-      setLeftLinesActive([]);
-      setLeftLinesDone(prev => [...prev, i]);
-    }
-    await sleep(400);
-    setScanActive(false);
-
-    // Phase 2: Right panel line-by-line typing
-    for (let i = 0; i < 11; i++) {
-      setRightLinesActive([i]);
-      const dwell = [4, 5, 6, 7].includes(i) ? 320 : 180;
-      await sleep(dwell);
-      setRightLinesActive([]);
-      setRightLinesDone(prev => [...prev, i]);
-    }
-    await sleep(280);
-
-    // Phase 3: Result row highlight & score roll-up
-    setIsComputing(true);
-    setIconSpin(true);
-
-    let currentScore = 0;
-    const targetScore = 9.2;
-    while (currentScore < targetScore - 0.01) {
-      currentScore = Math.min(currentScore + 0.25 + Math.random() * 0.4, targetScore);
-      setScoreText(`score: ${currentScore.toFixed(1)} / 10`);
-      await sleep(38);
-    }
-    setScoreText('score: 9.2 / 10');
-    setBadgePulse(true);
-
-    // Hold the final state
-    await sleep(3200);
-
-    // Reset loop
-    setAnimating(false);
-  };
-
   useEffect(() => {
     let active = true;
+    const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
+
     const runLoop = async () => {
       while (active) {
-        await startAnalysisAnimation();
-        await new Promise(r => setTimeout(r, 900));
+        // Reset
+        setAnimating(true);
+        setScanActive(false);
+        setLeftLinesActive([]);
+        setLeftLinesDone([]);
+        setRightLinesActive([]);
+        setRightLinesDone([]);
+        setIsComputing(false);
+        setIconSpin(false);
+        setScoreText('score: --- / 10');
+        setBadgePulse(false);
+
+        await sleep(500); if (!active) break;
+
+        // Phase 1: Scan beam
+        setScanActive(true);
+        for (let i = 0; i < 11; i++) {
+          if (!active) break;
+          setLeftLinesActive([i]);
+          await sleep(180); if (!active) break;
+          setLeftLinesActive([]);
+          setLeftLinesDone(prev => [...prev, i]);
+        }
+        if (!active) break;
+        await sleep(400); if (!active) break;
+        setScanActive(false);
+
+        // Phase 2: Right panel typing
+        for (let i = 0; i < 11; i++) {
+          if (!active) break;
+          setRightLinesActive([i]);
+          const dwell = [4, 5, 6, 7].includes(i) ? 320 : 180;
+          await sleep(dwell); if (!active) break;
+          setRightLinesActive([]);
+          setRightLinesDone(prev => [...prev, i]);
+        }
+        if (!active) break;
+        await sleep(280); if (!active) break;
+
+        // Phase 3: Score roll-up
+        setIsComputing(true);
+        setIconSpin(true);
+        let currentScore = 0;
+        const targetScore = 9.2;
+        while (active && currentScore < targetScore - 0.01) {
+          currentScore = Math.min(currentScore + 0.25 + Math.random() * 0.4, targetScore);
+          setScoreText(`score: ${currentScore.toFixed(1)} / 10`);
+          await sleep(38);
+        }
+        if (!active) break;
+        setScoreText('score: 9.2 / 10');
+        setBadgePulse(true);
+
+        await sleep(3200); if (!active) break;
+        setAnimating(false);
+        await sleep(900);
       }
     };
+
     runLoop();
-    return () => {
-      active = false;
-    };
+    return () => { active = false; };
   }, []);
 
   return (
@@ -102,22 +95,34 @@ export default function Analysis() {
         <div className="analysis-text">
           <p className="section-label">{t('analysis.label')}</p>
           <h2 className="h-section">
-            {t('analysis.title').split('아이디어로')[0]}<br />
-            <em>아이디어로</em><br />
-            {t('analysis.title').split('아이디어로')[1]}
+            {t.rich('analysis.title', {
+              highlight: (chunks) => <><br /><em>{chunks}</em><br /></>
+            })}
           </h2>
           <p>{t('analysis.desc')}</p>
           <div className="analysis-stats">
             <div className="stat">
-              <span className="stat-num">{t('analysis.stats.retention.num').replace('일', '')}<span className="ko">일</span></span>
+              <span className="stat-num">
+                {t.rich('analysis.stats.retention.num', {
+                  unit: (chunks) => <span className="ko">{chunks}</span>
+                })}
+              </span>
               <span className="stat-label"><span className="ko-label">{t('analysis.stats.retention.label')}</span></span>
             </div>
             <div className="stat">
-              <span className="stat-num">{t('analysis.stats.alert.num').replace('점+', '')}<span className="ko">점+</span></span>
+              <span className="stat-num">
+                {t.rich('analysis.stats.alert.num', {
+                  unit: (chunks) => <span className="ko">{chunks}</span>
+                })}
+              </span>
               <span className="stat-label"><span className="ko-label">{t('analysis.stats.alert.label')}</span></span>
             </div>
             <div className="stat">
-              <span className="stat-num">{t('analysis.stats.lag.num').replace('렉', '')}<span className="ko">렉</span></span>
+              <span className="stat-num">
+                {t.rich('analysis.stats.lag.num', {
+                  unit: (chunks) => <span className="ko">{chunks}</span>
+                })}
+              </span>
               <span className="stat-label"><span className="ko-label">{t('analysis.stats.lag.label')}</span></span>
             </div>
           </div>
@@ -128,7 +133,7 @@ export default function Analysis() {
             <div className="code-dot yellow"></div>
             <div className="code-dot green"></div>
             <span className="code-title">{t('analysis.code.title')}</span>
-            <span className="code-badge">IDEA TOK ◈</span>
+            <span className="code-badge">LIMINA ◈</span>
           </div>
           <div className="code-split">
             <div className="code-panel left">
@@ -189,7 +194,7 @@ export default function Analysis() {
             <div className="result-line">
               <span className={`result-icon ${iconSpin ? 'spin' : ''}`}>▶</span>
               <span className="result-text">
-                GOLD {t('hero.subTitle').split(' ').pop()} {t('demo.card.btnCopy').split(' ')[0]}
+                {t('analysis.code.resultText')}
                 <span className="result-score">{scoreText}</span>
               </span>
               <span className={`result-badge ${badgePulse ? 'pulse' : ''}`}>{t('analysis.code.resultBadge')}</span>

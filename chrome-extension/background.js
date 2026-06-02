@@ -1,7 +1,7 @@
-// background.js - IdeaTok AI Idea Collector Service Worker
+﻿// background.js - Limina AI Idea Collector Service Worker
 
-// 7421 포트에 통신 시 사용할 기본 보안 토큰 설정
-const DEFAULT_TOKEN = 'YOUR_DEFAULT_TOKEN';
+// 7421 포트에 통신 시 사용할 보안 토큰 (유저가 익스텐션 옵션에서 등록)
+const DEFAULT_TOKEN = '';
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'COLLECT_TEXT') {
@@ -16,7 +16,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 async function handleCollectText(payload) {
   // 1. 크롬 익스텐션 스토리지에서 유저가 등록한 32자 보안 토큰 조회
   const storage = await getLocalStorage(['apiToken']);
-  const token = storage.apiToken || DEFAULT_TOKEN;
+  const token = storage.apiToken || '';
+  if (!token) {
+    console.warn('Limina: No security token configured. Set it in the extension options.');
+    throw new Error('Security token not configured. Open Limina extension options to set your token.');
+  }
 
   // 2. 데스크톱 앱 로컬 서버(localhost:7421/collect)로 POST 요청 포워딩
   try {
@@ -24,7 +28,7 @@ async function handleCollectText(payload) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-IdeaTok-Token': token
+        'X-Limina-Token': token
       },
       body: JSON.stringify(payload)
     });
@@ -37,7 +41,7 @@ async function handleCollectText(payload) {
     console.log('Successfully forwarded data to desktop server:', data);
     return data;
   } catch (error) {
-    console.warn('Failed to forward data to IdeaTok desktop app (Is the app running?):', error.message);
+    console.warn('Failed to forward data to Limina desktop app (Is the app running?):', error.message);
     throw error;
   }
 }

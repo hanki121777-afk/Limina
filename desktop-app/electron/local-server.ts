@@ -1,8 +1,10 @@
-import http from 'node:http';
+﻿import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { app } from 'electron';
+import { app, BrowserWindow } from 'electron';
+import { createClient } from '@supabase/supabase-js';
+
 
 // ─────────────────────────────────────────────────────────
 // 1. 보안 토큰 및 설정값 초기화 (config.json)
@@ -42,10 +44,10 @@ function getOrInitializeToken(): string {
       }
     };
     fs.writeFileSync(configFilePath, JSON.stringify(newConfig, null, 2), 'utf-8');
-    console.log('[IdeaTok] Initialized new config and generated token:', newToken);
+    console.log('[Limina] Initialized new config and generated token.');
     return newToken;
   } catch (error) {
-    console.error('[IdeaTok] Error initializing configuration:', error);
+    console.error('[Limina] Error initializing configuration:', error);
     return 'FALLBACK_LOCAL_SECURITY_TOKEN_7421';
   }
 }
@@ -72,6 +74,101 @@ function getFormattedTimestamp(): string {
 }
 
 // ─────────────────────────────────────────────────────────
+// 2.5. Supabase 클라이언트 초기화 및 백그라운드 적재 셔틀
+// ─────────────────────────────────────────────────────────
+const supabaseUrl = process.env.VITE_SUPABASE_URL || (import.meta.env && (import.meta.env.VITE_SUPABASE_URL as string));
+const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || (import.meta.env && (import.meta.env.VITE_SUPABASE_ANON_KEY as string));
+
+let supabase: any = null;
+if (supabaseUrl && supabaseAnonKey) {
+  try {
+    supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false
+      }
+    });
+    console.log('[Limina LocalServer] Supabase client successfully initialized (without ws dependency).');
+  } catch (err) {
+    console.error('[Limina LocalServer] Failed to initialize Supabase client (isolated):', (err as Error).message);
+  }
+} else {
+  console.warn('[Limina LocalServer] Supabase configuration missing from env vars.');
+}
+
+function getUserId(): string {
+  const envTestUserId = process.env.VITE_TEST_USER_ID || (import.meta.env && (import.meta.env.VITE_TEST_USER_ID as string));
+  if (envTestUserId) {
+    return envTestUserId;
+  }
+
+  try {
+    if (fs.existsSync(configFilePath)) {
+      const raw = fs.readFileSync(configFilePath, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (parsed.supabaseUserId) {
+        return parsed.supabaseUserId;
+      }
+    }
+  } catch (err) {
+    console.error('[Limina LocalServer] Error reading supabaseUserId from config (isolated):', err);
+  }
+
+  return ''; // userId 없음 → 업로드 건너뜀
+}
+
+export async function uploadToSupabaseBackground(payload: { title: string; content: string }): Promise<void> {
+  if (!supabase) {
+    console.warn('[Limina LocalServer] Supabase client not initialized. Skipping upload.');
+    return;
+  }
+
+  try {
+    const userId = getUserId();
+    if (!userId) {
+      console.warn('[Limina LocalServer] No valid user ID found. Skipping upload.');
+      return;
+    }
+    const title = payload.title || (payload.content.length > 50 ? payload.content.slice(0, 50) + '...' : payload.content);
+    const summary = payload.content;
+
+    console.log(`[Limina LocalServer] Background upload started for user: ${userId}`);
+
+    const { error } = await supabase
+      .from('ideas')
+      .insert({
+        user_id: userId,
+        grade: 'BRONZE',
+        score: 4.0,
+        title: title,
+        context: 'On-device logged stream',
+        idea: summary,
+        business: {},
+        prompts: [],
+        locale: 'ko',
+        score_breakdown: {},
+        reality_check: {}
+      });
+
+    if (error) {
+      console.warn('[Limina LocalServer] Background upload failed (isolated):', error.message);
+    } else {
+      console.log('[Limina LocalServer] Background upload succeeded.');
+    }
+  } catch (err) {
+    console.warn('[Limina LocalServer] Background upload caught exception (isolated):', (err as Error).message);
+  }
+}
+
+
+// 수집 활성화 상태 관리 변수 및 설정 함수
+export let isServerCollecting = true;
+
+export function setServerCollecting(value: boolean) {
+  isServerCollecting = value;
+  console.log(`[Limina] Local server collection status updated: ${value}`);
+}
+
+// ─────────────────────────────────────────────────────────
 // 3. 로컬 서버 기동 메인 함수
 // ─────────────────────────────────────────────────────────
 export function startLocalServer() {
@@ -87,7 +184,7 @@ export function startLocalServer() {
       res.setHeader('Access-Control-Allow-Origin', origin);
     }
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-IdeaTok-Token');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Limina-Token');
 
     // Preflight (CORS 사전 안전 검사) 처리
     if (req.method === 'OPTIONS') {
@@ -99,14 +196,21 @@ export function startLocalServer() {
     // GET /status - 서버 상태 조회
     if (req.method === 'GET' && req.url === '/status') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ status: 'running', service: 'IdeaTok Local Service' }));
+      res.end(JSON.stringify({ status: 'running', service: 'Limina Local Service' }));
       return;
     }
 
     // POST /collect - 데이터 수집 포워딩 엔드포인트
     if (req.method === 'POST' && req.url === '/collect') {
-      // 1. 헤더 토큰 검증 (X-IdeaTok-Token)
-      const clientToken = req.headers['x-ideatok-token'];
+      // 0. 수집 활성화 여부 검증
+      if (!isServerCollecting) {
+        res.writeHead(503, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Service Unavailable', message: 'Collection is stopped' }));
+        return;
+      }
+
+      // 1. 헤더 토큰 검증 (X-Limina-Token)
+      const clientToken = req.headers['x-limina-token'];
       if (!clientToken || clientToken !== targetToken) {
         res.writeHead(401, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: 'Unauthorized', message: 'Invalid token' }));
@@ -142,8 +246,29 @@ export function startLocalServer() {
 
           fs.appendFileSync(logFilePath, logLine, 'utf-8');
 
+          // 4. 화면 IPC 전달 루프 (렌더러 프로세스로 실시간 로그 전송)
+          try {
+            const win = BrowserWindow.getAllWindows()[0];
+            if (win && !win.isDestroyed()) {
+              const timeString = new Date().toTimeString().split(' ')[0];
+              win.webContents.send('clipboard-copied-data', {
+                id: Date.now().toString(),
+                time: timeString,
+                source: payload.source,
+                content: payload.content.length > 55 ? payload.content.slice(0, 55) + '...' : payload.content
+              });
+            }
+          } catch (ipcErr) {
+            console.error('[Limina LocalServer] IPC transmission error (isolated):', ipcErr);
+          }
+
+          // 5. 로컬 파일 적재 및 IPC 완료 즉시 선제 응답 반환 (논블로킹)
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ status: 'ok', logged: true }));
+
+          // [온디바이스 프라이버시 가드레일] 날것의 수집 데이터는 무조건 클라우드로 전송하지 않고
+          // 오직 로컬 파일 적재 및 화면 IPC 전달만 수행하여 사생활을 완벽히 보호합니다.
+
         } catch (error) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: 'Bad Request', message: 'Invalid JSON body' }));
@@ -158,6 +283,6 @@ export function startLocalServer() {
   });
 
   server.listen(PORT, HOST, () => {
-    console.log(`[IdeaTok] Local HTTP Server running at http://${HOST}:${PORT}`);
+    console.log(`[Limina] Local HTTP Server running at http://${HOST}:${PORT}`);
   });
 }

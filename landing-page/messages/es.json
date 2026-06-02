@@ -1,1 +1,249 @@
-{}
+{
+  "nav": {
+    "links": {
+      "features": "Funciones",
+      "workflow": "Flujo de trabajo",
+      "pricing": "Precios",
+      "download": "Descargar"
+    },
+    "auth": {
+      "login": "Iniciar sesión",
+      "signup": "Registrarse",
+      "dashboard": "Ir al Panel"
+    },
+    "mobileToggle": "Abrir menú"
+  },
+  "hero": {
+    "badge": "ON-DEVICE AI · IDEA CAPTURE",
+    "subTitle": "Tu mensajero personal de <highlight>Ideas</highlight>",
+    "desc": "Recopila silenciosamente tus datos diarios mientras usas tu PC.\nTe notificamos solo cuando se captura una idea realmente valiosa.",
+    "descMeta": "Compatible con Windows · Mac · Linux · 6 idiomas",
+    "buttons": {
+      "download": "Descarga Gratis",
+      "dashboard": "Ir al Panel",
+      "how": "Cómo funciona"
+    }
+  },
+  "demo": {
+    "label": "02 — HOW IT WORKS",
+    "title": "Todo comienza con una <highlight>sola notificación</highlight>",
+    "desc1": "Lee noticias, mira YouTube y habla con IA como siempre. Limina acumula datos silenciosamente en segundo plano y solo muestra una notificación cuando se encuentra una idea realmente valiosa.",
+    "desc2": "Haz clic en la notificación para encontrar el marco de la idea junto con prompts de IA paso a paso. Copia con un clic y pregunta directamente a tu IA favorita.",
+    "card": {
+      "logo": "LIMINA",
+      "gradeBadge": "GOLD · 9.2/10",
+      "score": "// Análisis de fusión de 4 días completado",
+      "title": "Buzón inteligente para drones\ncon protección antirrobo",
+      "context": "Noticias de desregulación de drones × Texto del portapapeles sobre robo de paquetes",
+      "desc": "Un buzón inteligente para balcones en la era de entregas con drones. Cerradura antirrobo + almohadilla insonorizante + modelo de suscripción.",
+      "prompts": {
+        "p1": "Analiza el tamaño del mercado de entregas con drones y el público objetivo inicial.",
+        "p2": "Sugiere 3 diferenciadores comparados con servicios similares en el extranjero.",
+        "p3": "Simulación de ingresos de 6 meses basada en suscripción de $9.90/mes."
+      },
+      "btnCopy": "Copiar Prompt →",
+      "copiedText": "Copiado ✓",
+      "btnSave": "Archivar"
+    }
+  },
+  "analysis": {
+    "label": "03 — AI ANALYSIS",
+    "title": "Tu vida diaria se convierte en <highlight>Ideas</highlight>",
+    "desc": "La IA analiza silenciosamente los registros de texto recopilados. Encuentra patrones, puntúa y te alerta solo cuando la puntuación es 8 o superior.",
+    "stats": {
+      "retention": {
+        "num": "7<unit>d</unit>",
+        "label": "Retención de datos rotativa"
+      },
+      "alert": {
+        "num": "8<unit>pts+</unit>",
+        "label": "Puntuación mínima para alerta"
+      },
+      "lag": {
+        "num": "0<unit>lag</unit>",
+        "label": "Solo se ejecuta en reposo"
+      }
+    },
+    "code": {
+      "title": "daily_log.txt → idea_analysis.py",
+      "panelLeftLabel": "COLLECTED DATA (RAW)",
+      "panelRightLabel": "AI ANALYSIS RESULT",
+      "resultText": "Idea GOLD capturada",
+      "resultBadge": "Enviar alerta →",
+      "linesLeft": {
+        "l1": "[09:14 Noticias] Desregulación de entregas con drones",
+        "l2": "[11:30 YouTube] Modelo de suscripción de hogar inteligente",
+        "l3": "[13:05 Portapapeles] Daños por robo de paquetes…",
+        "l4": "[15:22 Noticias] Ley de refuerzo de seguridad en apartamentos",
+        "l5": "[16:40 Mensaje] Nos robaron otra vez",
+        "l6": "[18:10 YouTube] Reseña de buzón de paquetes automático",
+        "l7": "[19:30 Búsqueda] \"Solución de seguridad para hogares unipersonales\"",
+        "l8": "[20:15 Noticias] Previsión del mercado de drones IA 2030",
+        "l9": "[21:05 Portapapeles] Modelo SaaS de suscripción",
+        "l10": "[22:30 Nota] ¿Balcón = Base de drones?",
+        "l11": "[23:45 YouTube] Tendencia de seguridad IoT"
+      }
+    }
+  },
+  "features": {
+    "label": "04 — FEATURES",
+    "title": "Apaga el spam, enciende la <highlight>Inspiración</highlight>",
+    "desc": "Sin pensamiento forzado. Las alertas suenan solo en momentos realmente valiosos.",
+    "items": {
+      "gatekeeper": {
+        "title": "Guardián de 2 pasos",
+        "desc": "Aplica puntuación IA después de verificar la densidad de datos. Solo alerta con 8+ puntos. Las puntuaciones bajas se descartan silenciosamente."
+      },
+      "rolling": {
+        "title": "Sinergia rotativa de 7 días",
+        "desc": "Analiza una semana entera de datos. Las noticias del lunes y el memo del jueves se fusionan para crear una gran idea de negocio."
+      },
+      "idle": {
+        "title": "Análisis en tiempo de reposo",
+        "desc": "Despierta la IA solo cuando el PC está inactivo. Recopila texto silenciosamente durante el uso normal. Cero retraso garantizado."
+      },
+      "custom": {
+        "title": "Personalización de intereses",
+        "desc": "La IA refleja tus categorías de interés iniciales. Solo se entregan ideas adaptadas a ti."
+      },
+      "ondevice": {
+        "title": "Completamente on-device",
+        "desc": "Todos los datos se almacenan solo en tu PC. Sin transmisión a servidores externos. Solo llamadas API para análisis."
+      },
+      "prompts": {
+        "title": "Prompts de IA paso a paso",
+        "desc": "Proporciona 3-5 prompts de validación para cada idea. Copia con un clic y comienza a planificar con tu IA."
+      }
+    }
+  },
+  "workflow": {
+    "label": "05 — WORKFLOW",
+    "title": "De la recopilación a la inspiración, <highlight>automáticamente</highlight>",
+    "desc": "No se requiere ninguna acción después de la instalación. Simplemente usa tu PC como siempre.",
+    "steps": {
+      "step1": {
+        "title": "Recopilación en tiempo real",
+        "desc": "La extensión de Chrome/Edge + la app de escritorio recopilan silenciosamente texto de YouTube, noticias, chats de IA, archivos de oficina y portapapeles. Compatible con Windows, Mac y Linux.",
+        "tag": "AI OFF · Cero retraso"
+      },
+      "step2": {
+        "title": "Almacenamiento rotativo de 7 días",
+        "desc": "Almacena los últimos 7 días de datos. Los datos antiguos se encuentran con los nuevos para crear sinergias cruzadas.",
+        "tag": "Eliminación automática el día 8"
+      },
+      "step3": {
+        "title": "Análisis en tiempo de reposo",
+        "desc": "Cuando el PC está inactivo, los datos que pasan el filtro de 2 pasos se analizan por IA en la nube. Menos de 8 puntos se descarta silenciosamente.",
+        "tag": "Claude API (Haiku · Sonnet)"
+      },
+      "step4": {
+        "title": "Entrega de inspiración",
+        "desc": "Las alertas emergentes notifican solo cuando se captura una idea GOLD. Revisa el marco de la idea + 5 prompts paso a paso en el panel y pásalos a una IA externa.",
+        "tag": "Un clic para copiar → Enviar a IA"
+      }
+    }
+  },
+  "insight": {
+    "label": "06 — IDEA DASHBOARD",
+    "title": "Ideas capturadas <highlight>de un vistazo</highlight>",
+    "desc": "Revisa las ideas capturadas en cualquier momento en el panel web. Guarda tus ideas favoritas con una estrella.",
+    "pulseCard": {
+      "title": "Idea Archive · Mayo Semana 3",
+      "subLabel": "CAPTURED IDEAS · Lista / ★ Favoritos / Eliminar",
+      "item1": {
+        "title": "Buzón inteligente para drones",
+        "meta": "Recopilado 4d · Noticias drones × Portapapeles robo",
+        "b1": "Fusión de desregulación de drones y necesidades de seguridad en apartamentos",
+        "b2": "Modelo SaaS de hardware con suscripción aplicable"
+      },
+      "item2": {
+        "title": "App de gestión de rutinas RPG",
+        "meta": "Recopilado 2d · YouTube juegos × Receta de cocina",
+        "b1": "Se alinea con la tendencia de herramientas de productividad gamificadas",
+        "b2": "Potencial océano azul en el mercado de apps para hogares unipersonales"
+      }
+    },
+    "chartCard": {
+      "title": "IDEA SCORE DISTRIBUTION",
+      "categories": {
+        "news": "Noticias",
+        "youtube": "YouTube",
+        "ai": "Chat IA"
+      },
+      "legend": {
+        "gold": "GOLD",
+        "silver": "SILVER",
+        "burned": "BURNED"
+      },
+      "footer": {
+        "gold": "GOLD capturado",
+        "silver": "SILVER capturado",
+        "starred": "★ Favoritos",
+        "best": "Mejor puntuación"
+      }
+    },
+    "nav": {
+      "list": "Lista completa",
+      "starred": "★ Favoritos",
+      "detail": "Ver detalles"
+    }
+  },
+  "pricing": {
+    "label": "07 — PRICING",
+    "title": "Precios <highlight>simples</highlight>",
+    "desc": "Instalación gratuita. Actualiza cuando necesites ideas realmente geniales.",
+    "free": {
+      "tier": "FREE",
+      "amount": "0",
+      "unit": "USD",
+      "period": "Gratis para siempre",
+      "features": {
+        "f1": "Alertas SILVER / REPORT",
+        "f2": "10 alertas / mes",
+        "f3": "30 días de almacenamiento de ideas",
+        "f4": "Extensiones Chrome & Edge incluidas"
+      },
+      "btn": "Comenzar gratis"
+    },
+    "pro": {
+      "tier": "PRO",
+      "amount": "9.90",
+      "unit": "USD",
+      "period": "/ mes · Cancela cuando quieras",
+      "features": {
+        "f1": "Nivel GOLD desbloqueado",
+        "f2": "Análisis Claude Sonnet API",
+        "f3": "Alertas ilimitadas",
+        "f4": "5 prompts paso a paso",
+        "f5": "Almacenamiento ilimitado de ideas"
+      },
+      "btn": "Iniciar Pro"
+    },
+    "yearly": {
+      "tier": "Pase de 1 año",
+      "amount": "69.00",
+      "unit": "USD",
+      "period": "Early Bird · 40% de descuento",
+      "features": {
+        "f1": "1 año de acceso Pro",
+        "f2": "Ahorra 40% vs. mensual",
+        "f3": "Beneficios exclusivos Early Bird",
+        "f4": "Soporte prioritario"
+      },
+      "btn": "Comprar Early Bird"
+    }
+  },
+  "cta": {
+    "title": "No pierdas <highlight>Ideas</highlight> a partir de hoy",
+    "desc": "Configuración de 2 minutos. Después, simplemente usa tu PC como siempre.\nUna idea realmente genial te está esperando.",
+    "buttons": {
+      "win": "⊞ Descargar para Windows",
+      "mac": "⌘ Descargar para Mac",
+      "linux": "🐧 Descargar para Linux"
+    },
+    "meta": "Las extensiones se guían automáticamente después de la instalación · 6 idiomas"
+  },
+  "footer": {
+    "rights": "© 2026 Limina · ALL RIGHTS RESERVED"
+  }
+}

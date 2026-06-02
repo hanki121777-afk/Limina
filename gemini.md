@@ -1,13 +1,13 @@
-# IdeaTok — Antigravity AI 작업 규칙 (gemini.md)
+﻿# Limina — Antigravity AI 작업 규칙 (gemini.md)
 
-> 이 파일은 **Antigravity IDE (Gemini 모델)** 가 IdeaTok 프로젝트 작업 시 따라야 할 최상위 절대 규칙입니다.
+> 이 파일은 **Antigravity IDE (Gemini 모델)** 가 Limina 프로젝트 작업 시 따라야 할 최상위 절대 규칙입니다.
 > CLAUDE.md와 동일한 규칙이지만, **Antigravity 전담 작업 범위**와 **Claude Code로 넘기는 기준**이 추가됩니다.
 
 ---
 
 ## 🤖 AI 역할 분담 (반드시 숙지)
 
-IdeaTok은 두 AI 도구를 목적에 따라 분리해서 사용합니다.
+Limina은 두 AI 도구를 목적에 따라 분리해서 사용합니다.
 
 | AI 도구 | 담당 작업 | 언제 사용 |
 |---|---|---|
@@ -54,7 +54,7 @@ Claude Code로 넘길 때 이렇게 말하세요:
 
 아래 규칙과 충돌하는 요청이 들어오면, **멈추고 사용자에게 먼저 확인하세요.**
 
-특히 **수집 데이터 서버 전송, 카카오톡 자동 수집, 게시판/공유 기능 추가, 한국 전용 코드** 같은 요청은 IdeaTok의 핵심 가치를 무너뜨립니다. 이런 요청이 오면 작업을 즉시 멈추고 "프로젝트 제약 조건 위반"임을 먼저 고지하세요.
+특히 **수집 데이터 서버 전송, 카카오톡 자동 수집, 게시판/공유 기능 추가, 한국 전용 코드** 같은 요청은 Limina의 핵심 가치를 무너뜨립니다. 이런 요청이 오면 작업을 즉시 멈추고 "프로젝트 제약 조건 위반"임을 먼저 고지하세요.
 
 ---
 
@@ -80,7 +80,7 @@ Claude Code로 넘길 때 이렇게 말하세요:
 | 앱 폰트 (중국어) | **Noto Sans SC/TC** | 다른 거 안 됨 |
 
 사용자가 다른 기술을 요청하면 이렇게 물어보세요:
-> "IdeaTok은 Electron + React + Next.js + Supabase 조합에 맞춰져 있어요. 다른 걸 쓰면 글로벌 배포와 다국어 처리가 어려워져요. 일단 이 조합으로 진행할까요?"
+> "Limina은 Electron + React + Next.js + Supabase 조합에 맞춰져 있어요. 다른 걸 쓰면 글로벌 배포와 다국어 처리가 어려워져요. 일단 이 조합으로 진행할까요?"
 
 ---
 
@@ -199,8 +199,8 @@ cd ~/dev
 
 #### Step 3. 프로젝트 구조 생성
 ```bash
-mkdir ideatok
-cd ideatok
+mkdir Limina
+cd Limina
 
 mkdir desktop-app
 mkdir chrome-extension
@@ -246,7 +246,7 @@ mkdir shared
 
 ### 11. 온디바이스 원칙 (데이터 분리)
 
-이건 IdeaTok의 **핵심 차별점**입니다. 절대 어기지 마세요.
+이건 Limina의 **핵심 차별점**입니다. 절대 어기지 마세요.
 
 | 데이터 | 저장 위치 | 외부 전송 |
 |---|---|---|
@@ -302,7 +302,7 @@ mkdir shared
 ### `/start` — 프로젝트 시작
 
 1. Node.js 설치 확인 + 설치
-2. 작업 폴더 생성 (`C:\dev\ideatok` 또는 `~/dev/ideatok`)
+2. 작업 폴더 생성 (`C:\dev\Limina` 또는 `~/dev/Limina`)
 3. 5개 하위 프로젝트 폴더 생성
 4. Git 저장소 초기화 (`git init` + `.gitignore`)
 5. `shared/` 폴더에 공통 TypeScript 타입 정의
@@ -451,8 +451,8 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ### Linux: AppImage 실행 안 됨
 ```bash
-chmod +x IdeaTok-*.AppImage
-./IdeaTok-*.AppImage
+chmod +x Limina-*.AppImage
+./Limina-*.AppImage
 ```
 
 ---
@@ -470,7 +470,7 @@ chmod +x IdeaTok-*.AppImage
 
 ## 🥊 경쟁사 비교 (포지셔닝 참고용)
 
-| 비교 항목 | Screenpipe (Rewind) | MS Copilot Recall | 유튜브 요약 익스텐션 | **IdeaTok** |
+| 비교 항목 | Screenpipe (Rewind) | MS Copilot Recall | 유튜브 요약 익스텐션 | **Limina** |
 |---|---|---|---|---|
 | 핵심 콘셉트 | PC 화면/소리 무제한 녹화 | Windows OS 스크린샷 저장 | 클릭한 영상 자막 요약 | **일상에서 대박 아이디어 자동 포착·배달** |
 | 알림 주기 | 수동 검색 (알림 없음) | 수동 타임라인 복구 | 유저가 버튼 누를 때만 | **퀄리티·빈도 황금선 자동 조절** |
@@ -478,9 +478,9 @@ chmod +x IdeaTok-*.AppImage
 | 사생활 보호 | 보통 (모든 화면 캡처) | 최악 (전 세계 반발) | 안전 (해당 영상만) | **최상 (일상 데이터 100% 로컬)** |
 | 제품 목적 | 과거 활동 검색 툴 | 화면 복구 백업 툴 | 영상 내용 요약 툴 | **"오, 이거 나쁘지 않네!" 비즈니스 포착 툴** |
 
-**IdeaTok 핵심 차별점 3가지:**
+**Limina 핵심 차별점 3가지:**
 1. **알아서 배달** — 유저가 찾으러 가는 게 아니라, 가치 있을 때만 찾아옴
 2. **완전 온디바이스** — 일상 로그는 PC를 떠나지 않음 (MS Recall의 반대)
 3. **말맛 포장** — 아이디어를 그냥 주는 게 아니라 흥분되게 포장해서 줌
 
-— IdeaTok Team
+— Limina Team

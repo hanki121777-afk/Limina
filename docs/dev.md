@@ -1,4 +1,4 @@
-# IdeaTok 개발자 가이드 (dev.md)
+﻿# Limina 개발자 가이드 (dev.md)
 
 > 이 문서는 **개발자가 코드를 짤 때 참고하는 기술 가이드**입니다.
 > 기술 스택, 환경 세팅, 핵심 모듈 코드 뼈대, 빌드/배포 방법이 들어있습니다.
@@ -127,14 +127,14 @@ node -v
 ```powershell
 mkdir C:\dev
 cd C:\dev
-mkdir ideatok
-cd ideatok
+mkdir Limina
+cd Limina
 ```
 
 **Mac/Linux:**
 ```bash
-mkdir -p ~/dev/ideatok
-cd ~/dev/ideatok
+mkdir -p ~/dev/Limina
+cd ~/dev/Limina
 ```
 
 ⚠️ **Windows는 반드시 영어 경로 사용.** 바탕화면, 한글 폴더 안 됨.
@@ -321,10 +321,10 @@ export default {
           'card-2': '#131313',
         },
         cyan: {
-          DEFAULT: '#06b6d4',
-          dim: 'rgba(6,182,212,0.5)',
-          soft: 'rgba(6,182,212,0.08)',
-          glow: 'rgba(6,182,212,0.25)',
+          DEFAULT: '#27E0A1',
+          dim: 'rgba(39,224,161,0.5)',
+          soft: 'rgba(39,224,161,0.08)',
+          glow: 'rgba(39,224,161,0.25)',
         },
         border: {
           DEFAULT: 'rgba(255,255,255,0.08)',
@@ -364,7 +364,7 @@ export function startLocalServer() {
   const server = createServer((req, res) => {
     // CORS: 익스텐션만 허용
     res.setHeader('Access-Control-Allow-Origin', 'chrome-extension://*');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-IdeaTok-Token');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Limina-Token');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     
     if (req.method === 'OPTIONS') {
@@ -374,7 +374,7 @@ export function startLocalServer() {
     }
     
     // 토큰 검증
-    const token = req.headers['x-ideatok-token'];
+    const token = req.headers['x-Limina-token'];
     const validToken = config.get('local_server.auth_token');
     if (token !== validToken) {
       res.writeHead(401);
@@ -522,7 +522,7 @@ import { buildPrompt } from './prompt-builder';
 import { parseResponse } from './response-parser';
 import type { AnalysisResult } from '@shared/types/idea';
 
-const KEYTAR_SERVICE = 'IdeaTok';
+const KEYTAR_SERVICE = 'Limina';
 const KEYTAR_ACCOUNT = 'anthropic_api_key';
 
 export async function analyzeLogs(dailyLog: string): Promise<AnalysisResult> {
@@ -577,7 +577,7 @@ export function createTray() {
   const icon = nativeImage.createFromPath(iconPath);
   tray = new Tray(icon);
   
-  tray.setToolTip('IdeaTok');
+  tray.setToolTip('Limina');
   
   const menu = Menu.buildFromTemplate([
     { label: t('tray.dashboard'), click: openDashboard },
@@ -604,7 +604,7 @@ export function showIdeaNotification(idea: {
   
   notif.on('click', () => {
     shell.openExternal(
-      `https://ideatok.com/${locale}/dashboard/ideas/${idea.id}`
+      `https://Limina.com/${locale}/dashboard/ideas/${idea.id}`
     );
   });
   
@@ -627,7 +627,7 @@ export function setupAutoUpdater() {
     const result = await dialog.showMessageBox({
       type: 'info',
       title: 'Update Available',
-      message: 'A new version of IdeaTok is available. Download now?',
+      message: 'A new version of Limina is available. Download now?',
       buttons: ['Download', 'Later'],
     });
     
@@ -773,13 +773,13 @@ web-dashboard/src/
 ```json
 {
   "extension_name": {
-    "message": "IdeaTok — AI Idea Detector"
+    "message": "Limina — AI Idea Detector"
   },
   "extension_description": {
     "message": "Collects text data from your browsing and lets AI detect business ideas. All processing is local."
   },
   "popup_title": {
-    "message": "IdeaTok Collector"
+    "message": "Limina Collector"
   }
 }
 ```
@@ -789,13 +789,13 @@ web-dashboard/src/
 ```json
 {
   "extension_name": {
-    "message": "IdeaTok — AI 아이디어 탐지기"
+    "message": "Limina — AI 아이디어 탐지기"
   },
   "extension_description": {
     "message": "당신의 브라우징 데이터를 모아 AI가 비즈니스 아이디어를 발견하도록 돕습니다. 모든 처리는 로컬에서 이루어집니다."
   },
   "popup_title": {
-    "message": "IdeaTok 수집기"
+    "message": "Limina 수집기"
   }
 }
 ```
@@ -823,7 +823,7 @@ function getCollector(hostname) {
 async function sendToApp(data) {
   const { authToken } = await chrome.storage.local.get('authToken');
   if (!authToken) {
-    console.warn('IdeaTok: Auth token not set. Open desktop app first.');
+    console.warn('Limina: Auth token not set. Open desktop app first.');
     return;
   }
   
@@ -832,13 +832,13 @@ async function sendToApp(data) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-IdeaTok-Token': authToken,
+        'X-Limina-Token': authToken,
       },
       body: JSON.stringify(data),
     });
     
     if (!response.ok) {
-      console.warn('IdeaTok: Server returned', response.status);
+      console.warn('Limina: Server returned', response.status);
     }
   } catch (err) {
     // 데스크톱 앱이 안 켜져 있음 — 무시
@@ -868,7 +868,7 @@ function collectYoutube() {
 
 ## 6. config.json 구조 (데스크톱 앱)
 
-`%APPDATA%/IdeaTok/config.json` (Win), `~/Library/Application Support/IdeaTok/config.json` (Mac), `~/.config/IdeaTok/config.json` (Linux):
+`%APPDATA%/Limina/config.json` (Win), `~/Library/Application Support/Limina/config.json` (Mac), `~/.config/Limina/config.json` (Linux):
 
 ```json
 {
@@ -924,9 +924,9 @@ function collectYoutube() {
 `desktop-app/electron-builder.yml`:
 
 ```yaml
-appId: com.ideatok.app
-productName: IdeaTok
-copyright: Copyright © 2026 IdeaTok
+appId: com.Limina.app
+productName: Limina
+copyright: Copyright © 2026 Limina
 
 directories:
   output: release/${version}
@@ -943,7 +943,7 @@ win:
     - target: nsis
       arch: [x64]
   icon: build/icon.ico
-  publisherName: IdeaTok
+  publisherName: Limina
   
 nsis:
   oneClick: false
@@ -972,8 +972,8 @@ linux:
 # 자동 업데이트
 publish:
   provider: github
-  owner: ideatok
-  repo: ideatok-desktop
+  owner: Limina
+  repo: Limina-desktop
 ```
 
 빌드 명령:
@@ -1018,7 +1018,7 @@ npx vercel --prod       # 프로덕션 배포 (사용자 명시 지시 시에만
 - [ ] `console.log`에 민감 정보 출력되지 않나?
 - [ ] Claude API 호출 전 PII 마스킹이 적용되나?
 - [ ] 로컬 HTTP 서버가 127.0.0.1만 바인딩하나?
-- [ ] X-IdeaTok-Token 헤더 검증이 작동하나?
+- [ ] X-Limina-Token 헤더 검증이 작동하나?
 - [ ] Supabase RLS가 활성화되어 있나?
 - [ ] CSP (Content Security Policy)가 설정되어 있나?
 - [ ] Electron `contextIsolation: true`, `nodeIntegration: false`인가?
@@ -1033,7 +1033,7 @@ npx vercel --prod       # 프로덕션 배포 (사용자 명시 지시 시에만
 ### Q. Supabase 프로젝트는 어떻게 만들죠?
 1. [supabase.com](https://supabase.com) 가입
 2. "New Project" 클릭
-3. 프로젝트 이름: `ideatok`
+3. 프로젝트 이름: `Limina`
 4. Database Password 설정 (안전한 곳에 보관)
 5. Region: 한국 유저 많으면 `Northeast Asia (Seoul)`, 글로벌이면 `US East`
 

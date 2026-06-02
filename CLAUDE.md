@@ -1,6 +1,6 @@
-# IdeaTok — AI 에이전트 작업 규칙 (CLAUDE.md / GEMINI.md)
+﻿# Limina — AI 에이전트 작업 규칙 (CLAUDE.md / GEMINI.md)
 
-> 이 파일은 IdeaTok 프로젝트의 **최상위 절대 규칙**입니다.
+> 이 파일은 Limina 프로젝트의 **최상위 절대 규칙**입니다.
 > Antigravity, Claude Code, Gemini 등 모든 AI 코딩 도구는 이 파일을 가장 먼저 읽고 따라야 합니다.
 
 ---
@@ -21,7 +21,7 @@
 
 아래 규칙과 충돌하는 요청이 들어오면, **멈추고 사용자에게 먼저 확인하세요.**
 
-특히 **수집 데이터 서버 전송, 카카오톡 자동 수집, 게시판/공유 기능 추가, 한국 전용 코드** 같은 요청은 IdeaTok의 핵심 가치를 무너뜨립니다. 이런 요청이 오면 작업을 즉시 멈추고 "프로젝트 제약 조건 위반"임을 먼저 고지하세요.
+특히 **수집 데이터 서버 전송, 카카오톡 자동 수집, 게시판/공유 기능 추가, 한국 전용 코드** 같은 요청은 Limina의 핵심 가치를 무너뜨립니다. 이런 요청이 오면 작업을 즉시 멈추고 "프로젝트 제약 조건 위반"임을 먼저 고지하세요.
 
 ---
 
@@ -47,7 +47,7 @@
 | 앱 폰트 (중국어) | **Noto Sans SC/TC** | 다른 거 안 됨 |
 
 사용자가 다른 기술을 요청하면 이렇게 물어보세요:
-> "IdeaTok은 Electron + React + Next.js + Supabase 조합에 맞춰져 있어요. 다른 걸 쓰면 글로벌 배포와 다국어 처리가 어려워져요. 일단 이 조합으로 진행할까요?"
+> "Limina은 Electron + React + Next.js + Supabase 조합에 맞춰져 있어요. 다른 걸 쓰면 글로벌 배포와 다국어 처리가 어려워져요. 일단 이 조합으로 진행할까요?"
 
 ---
 
@@ -170,9 +170,9 @@ node -v
 
 #### Step 3. 프로젝트 구조 생성
 ```bash
-# IdeaTok 메인 폴더
-mkdir ideatok
-cd ideatok
+# Limina 메인 폴더
+mkdir Limina
+cd Limina
 
 # 5개 하위 프로젝트
 mkdir desktop-app          # Electron 데스크톱 앱
@@ -225,7 +225,7 @@ mkdir shared              # 공통 타입/유틸 (TypeScript)
 
 ### 11. 온디바이스 원칙 (데이터 분리)
 
-이건 IdeaTok의 **핵심 차별점**입니다. 절대 어기지 마세요.
+이건 Limina의 **핵심 차별점**입니다. 절대 어기지 마세요.
 
 | 데이터 | 저장 위치 | 외부 전송 |
 |---|---|---|
@@ -291,7 +291,7 @@ mkdir shared              # 공통 타입/유틸 (TypeScript)
 ### `/start` — 프로젝트 시작
 
 1. Node.js 설치 확인 + 설치
-2. 작업 폴더 생성 (`C:\dev\ideatok` 또는 `~/dev/ideatok`)
+2. 작업 폴더 생성 (`C:\dev\Limina` 또는 `~/dev/Limina`)
 3. 5개 하위 프로젝트 폴더 생성
 4. Git 저장소 초기화 (`git init` + `.gitignore`)
 5. `shared/` 폴더에 공통 TypeScript 타입 정의
@@ -452,8 +452,8 @@ Homebrew 미설치. 다음 명령으로 설치 안내:
 
 ### Linux: AppImage 실행 안 됨
 ```bash
-chmod +x IdeaTok-*.AppImage
-./IdeaTok-*.AppImage
+chmod +x Limina-*.AppImage
+./Limina-*.AppImage
 ```
 
 ---
@@ -466,4 +466,4 @@ chmod +x IdeaTok-*.AppImage
 3. 핵심 가치는 "온디바이스 + 말맛 + 심플함"입니다.
 4. 의심스러우면 멈추고 물어보세요.
 
-— IdeaTok Team
+— Limina Team

@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+﻿import { createClient } from '@supabase/supabase-js';
 
 // ─────────────────────────────────────────────────────────
 // 타입 정의 — api.md 5-8 / 6-4 스키마 기준
@@ -14,6 +14,8 @@ export interface IdeaUploadPayload {
   locale: string;
   userId: string;
   accessToken: string;
+  score_breakdown?: any;
+  reality_check?: any;
 }
 
 // ─────────────────────────────────────────────────────────
@@ -28,7 +30,7 @@ export async function uploadIdeaToSupabase(
   const supabaseAnonKey = env.VITE_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    console.log('[IdeaTok IdeaUpload] Supabase env vars not configured. Skipping upload.');
+    console.log('[Limina IdeaUpload] Supabase env vars not configured. Skipping upload.');
     return null;
   }
 
@@ -52,20 +54,23 @@ export async function uploadIdeaToSupabase(
         business: payload.business ?? null,
         prompts: payload.prompts ?? null,
         locale: payload.locale,
+        score_breakdown: payload.score_breakdown ?? null,
+        reality_check: payload.reality_check ?? null,
       })
       .select('id');
 
+
     if (error) {
-      console.error('[IdeaTok IdeaUpload] Insert error:', error.message);
+      console.error('[Limina IdeaUpload] Insert error:', error.message);
       return null;
     }
 
     const rows = data as Array<{ id: string }> | null;
     const ideaId = rows?.[0]?.id ?? null;
-    console.log(`[IdeaTok IdeaUpload] Saved to Supabase. ID: ${ideaId}`);
+    console.log(`[Limina IdeaUpload] Saved to Supabase. ID: ${ideaId}`);
     return ideaId;
   } catch (err) {
-    console.error('[IdeaTok IdeaUpload] Upload failed:', (err as Error).message);
+    console.error('[Limina IdeaUpload] Upload failed:', (err as Error).message);
     return null;
   }
 }

@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+﻿import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline';
 import { app } from 'electron';
@@ -19,7 +19,7 @@ export async function performDataRollingCleanup(): Promise<void> {
       return; // 로그 파일이 없으면 정리할 것도 없으므로 조용히 스킵
     }
 
-    console.log('[IdeaTok DataManager] Starting 7-day rolling data cleanup...');
+    console.log('[Limina DataManager] Starting 7-day rolling data cleanup...');
 
     const readStream = fs.createReadStream(logFilePath, 'utf-8');
     const writeStream = fs.createWriteStream(tempLogFilePath, 'utf-8');
@@ -80,9 +80,9 @@ export async function performDataRollingCleanup(): Promise<void> {
       });
     });
 
-    console.log(`[IdeaTok DataManager] Rolling cleanup completed. Kept: ${keptCount} lines, Purged (7 days older): ${purgedCount} lines.`);
+    console.log(`[Limina DataManager] Rolling cleanup completed. Kept: ${keptCount} lines, Purged (7 days older): ${purgedCount} lines.`);
   } catch (error) {
-    console.error('[IdeaTok DataManager] Error during data rolling cleanup:', error);
+    console.error('[Limina DataManager] Error during data rolling cleanup:', error);
     // 에러 발생 시 임시 파일 안전하게 정리
     if (fs.existsSync(tempLogFilePath)) {
       try {

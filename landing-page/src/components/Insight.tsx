@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
@@ -36,9 +36,9 @@ export default function Insight() {
 
     const seedRng = seedRand(7);
     const categories = [
-      { label: t('analysis.code.panelLeftLabel').split(' ')[0], data: gen(seedRng, 38, 8.6, 5.2, 2.6) }, // 뉴스
-      { label: '유튜브', data: gen(seedRng, 46, 8.2, 4.4, 2.8) },
-      { label: 'AI 대화', data: gen(seedRng, 32, 8.8, 5.6, 2.4) },
+      { label: t('insight.chartCard.categories.news'), data: gen(seedRng, 38, 8.6, 5.2, 2.6) },
+      { label: t('insight.chartCard.categories.youtube'), data: gen(seedRng, 46, 8.2, 4.4, 2.8) },
+      { label: t('insight.chartCard.categories.ai'), data: gen(seedRng, 32, 8.8, 5.6, 2.4) },
     ];
 
     let dots: Array<{
@@ -167,7 +167,7 @@ export default function Insight() {
       c.moveTo(padL, goldY);
       c.lineTo(W - padR, goldY);
       c.setLineDash([4, 4]);
-      c.strokeStyle = 'rgba(6, 182, 212, 0.22)';
+      c.strokeStyle = 'rgba(39, 224, 161, 0.22)';
       c.lineWidth = 1;
       c.stroke();
       c.setLineDash([]);
@@ -177,7 +177,7 @@ export default function Insight() {
         if (i === 0) c.moveTo(p.cx, p.y);
         else c.lineTo(p.cx, p.y);
       });
-      c.strokeStyle = 'rgba(6, 182, 212, 0.35)';
+      c.strokeStyle = 'rgba(39, 224, 161, 0.35)';
       c.lineWidth = 1.4;
       c.stroke();
 
@@ -190,8 +190,8 @@ export default function Insight() {
       c.lineTo(medianLine[0].cx, padT + chartH);
       c.closePath();
       const fillGrad = c.createLinearGradient(0, padT, 0, padT + chartH);
-      fillGrad.addColorStop(0, 'rgba(6, 182, 212, 0.10)');
-      fillGrad.addColorStop(1, 'rgba(6, 182, 212, 0)');
+      fillGrad.addColorStop(0, 'rgba(39, 224, 161, 0.10)');
+      fillGrad.addColorStop(1, 'rgba(39, 224, 161, 0)');
       c.fillStyle = fillGrad;
       c.fill();
 
@@ -227,12 +227,12 @@ export default function Insight() {
           const haloA = 0.10 + twinkle * 0.18;
           ctx.beginPath();
           ctx.arc(x, y, haloR, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(6, 182, 212, ${haloA.toFixed(3)})`;
+          ctx.fillStyle = `rgba(39, 224, 161, ${haloA.toFixed(3)})`;
           ctx.fill();
 
           ctx.beginPath();
           ctx.arc(x, y, d.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(6, 182, 212, ${(d.alpha * (0.85 + twinkle * 0.15)).toFixed(3)})`;
+          ctx.fillStyle = `rgba(39, 224, 161, ${(d.alpha * (0.85 + twinkle * 0.15)).toFixed(3)})`;
           ctx.fill();
         } else {
           const a = d.alpha * (0.7 + twinkle * 0.3);
@@ -262,7 +262,8 @@ export default function Insight() {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(chartFrameId);
     };
-  }, [t]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className="insight-section">
@@ -270,8 +271,9 @@ export default function Insight() {
         <div className="insight-header">
           <p className="section-label">{t('insight.label')}</p>
           <h2 className="h-section">
-            {t('insight.title').split('한눈에')[0]}<br />
-            <em>한눈에</em>
+            {t.rich('insight.title', {
+              highlight: (chunks) => <><br /><em>{chunks}</em></>
+            })}
           </h2>
           <p>{t('insight.desc')}</p>
         </div>

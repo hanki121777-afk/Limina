@@ -1,4 +1,4 @@
-// content.js - IdeaTok AI Idea Collector Content Script
+﻿// content.js - Limina AI Idea Collector Content Script
 
 // 수집 실행 차단 필터 (결제, 보안, 마이페이지 등 민감 키워드 차단)
 const BLOCKED_PATH_KEYWORDS = ['checkout', 'payment', 'login', 'signup', 'passwd', 'password', 'mypage', 'account', 'banking'];
@@ -190,7 +190,7 @@ async function runCollector() {
         // 백그라운드 서비스 워커가 준비되지 않았을 경우의 에러 로깅 방지 (조용한 작동)
         return;
       }
-      console.log('IdeaTok Extracted Response:', response);
+      console.log('Limina Extracted Response:', response);
     });
   }
 }

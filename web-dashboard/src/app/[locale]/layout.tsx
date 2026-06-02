@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   
   const titles: Record<string, string> = {
-    ko: "IdeaTok 대시보드 — 나만의 아이디어 보관함",
-    en: "IdeaTok Dashboard — Your Personal Idea Vault",
-    ja: "IdeaTokダッシュボード — アイデア保管庫",
-    "zh-CN": "IdeaTok 控制台 — 您的创意保险库",
-    "zh-TW": "IdeaTok 控制台 — 您的創意保險庫",
-    es: "IdeaTok Panel — Tu bóveda de ideas personal",
+    ko: "Limina 대시보드 — 나만의 아이디어 보관함",
+    en: "Limina Dashboard — Your Personal Idea Vault",
+    ja: "Liminaダッシュボード — アイデア保管庫",
+    "zh-CN": "Limina 控制台 — 您的创意保险库",
+    "zh-TW": "Limina 控制台 — 您的創意保險庫",
+    es: "Limina Panel — Tu bóveda de ideas personal",
   };
 
   return {
@@ -47,6 +47,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html 
       lang={locale} 
+      suppressHydrationWarning
       className={`${unbounded.variable} ${jetbrainsMono.variable}`}
     >
       <head>

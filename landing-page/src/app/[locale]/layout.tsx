@@ -27,12 +27,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   
   // Simple localized metadata
   const titles: Record<string, string> = {
-    ko: "IdeaTok — 나만의 아이디어 배달부",
-    en: "IdeaTok — Your Personal Idea Delivery Agent",
-    ja: "IdeaTok — あなただけのアイデア配達員",
-    "zh-CN": "IdeaTok — 您的私人创意递送员",
-    "zh-TW": "IdeaTok — 您的私人創意遞送員",
-    es: "IdeaTok — Tu repartidor de ideas personal",
+    ko: "Limina — 나만의 아이디어 배달부",
+    en: "Limina — Your Personal Idea Delivery Agent",
+    ja: "Limina — あなただけのアイデア配達員",
+    "zh-CN": "Limina — 您的私人创意递送员",
+    "zh-TW": "Limina — 您的私人創意遞送員",
+    es: "Limina — Tu repartidor de ideas personal",
   };
 
   return {
@@ -46,23 +46,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html 
-      lang={locale} 
-      className={`${unbounded.variable} ${jetbrainsMono.variable}`}
-    >
-      <head>
-        {/* Pretendard CDN link for Korean typography */}
-        <link 
-          rel="stylesheet" 
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" 
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      <div className={`${unbounded.variable} ${jetbrainsMono.variable}`}>
+        {children}
+      </div>
+    </NextIntlClientProvider>
   );
 }

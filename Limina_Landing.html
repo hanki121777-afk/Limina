@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IdeaTok — 나만의 아이디어 배달부</title>
+<title>Limina — 나만의 아이디어 배달부</title>
 <link rel="icon" href="assets/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
@@ -19,10 +19,10 @@
     --bg-card-2: #131313;
     --border: rgba(255,255,255,0.08);
     --border-strong: rgba(255,255,255,0.14);
-    --cyan: #06b6d4;
-    --cyan-dim: rgba(6,182,212,0.5);
-    --cyan-soft: rgba(6,182,212,0.08);
-    --cyan-glow: rgba(6,182,212,0.25);
+    --cyan: #27E0A1;
+    --cyan-dim: rgba(39,224,161,0.5);
+    --cyan-soft: rgba(39,224,161,0.08);
+    --cyan-glow: rgba(39,224,161,0.25);
     --white: #ffffff;
     --text: #ffffff;
     --muted: rgba(255,255,255,0.55);
@@ -71,8 +71,8 @@
     content: '';
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background-image:
-      linear-gradient(rgba(6,182,212,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(6,182,212,0.05) 1px, transparent 1px);
+      linear-gradient(rgba(39,224,161,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(39,224,161,0.05) 1px, transparent 1px);
     background-size: 64px 64px;
     background-position: center top;
     mask-image: linear-gradient(to bottom,
@@ -126,7 +126,7 @@
     color: var(--white);
   }
   .nav-logo-text em {
-    color: var(--cyan); font-style: normal;
+    color: var(--white); font-style: normal;
   }
 
   .nav-links {
@@ -141,7 +141,7 @@
     letter-spacing: -0.2px;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover { color: var(--cyan); }
 
   .nav-auth {
     display: flex; align-items: center; gap: 8px;
@@ -157,10 +157,10 @@
     border: 1px solid var(--cyan);
   }
   .nav-links a.nav-login:hover {
-    background: #22d3ee;
-    border-color: #22d3ee;
+    background: #4de8b3;
+    border-color: #4de8b3;
     color: #000;
-    box-shadow: 0 0 24px rgba(6,182,212,0.4);
+    box-shadow: 0 0 24px rgba(39,224,161,0.4);
   }
   .nav-links a.nav-signup {
     background: transparent;
@@ -268,13 +268,13 @@
     background:
       /* Cyan spotlight from top-center */
       radial-gradient(ellipse 70% 55% at 50% 28%,
-        rgba(6,182,212,0.16) 0%,
-        rgba(6,182,212,0.07) 22%,
-        rgba(6,182,212,0.025) 45%,
+        rgba(39,224,161,0.16) 0%,
+        rgba(39,224,161,0.07) 22%,
+        rgba(39,224,161,0.025) 45%,
         transparent 72%),
       /* Soft warm "horizon" band under the title */
       radial-gradient(ellipse 90% 35% at 50% 55%,
-        rgba(6,182,212,0.05) 0%,
+        rgba(39,224,161,0.05) 0%,
         transparent 65%),
       /* Corner vignette to push focus to center */
       radial-gradient(ellipse 140% 110% at 50% 50%,
@@ -309,8 +309,8 @@
 
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(6,182,212,0.06);
-    border: 1px solid rgba(6,182,212,0.2);
+    background: rgba(39,224,161,0.06);
+    border: 1px solid rgba(39,224,161,0.2);
     border-radius: 100px;
     padding: 7px 16px;
     margin-bottom: 44px;
@@ -384,13 +384,13 @@
     text-decoration: none;
     display: inline-flex; align-items: center; justify-content: center;
     transition: all 0.25s cubic-bezier(.2,.7,.3,1);
-    box-shadow: 0 0 0 rgba(6,182,212,0);
+    box-shadow: 0 0 0 rgba(39,224,161,0);
     border: 1px solid transparent;
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    background: #22d3ee;
-    box-shadow: 0 12px 40px rgba(6,182,212,0.35);
+    background: #4de8b3;
+    box-shadow: 0 12px 40px rgba(39,224,161,0.35);
   }
 
   .btn-secondary {
@@ -434,9 +434,9 @@
     isolation: isolate;
     background:
       radial-gradient(ellipse 55% 75% at 78% 50%,
-        rgba(6,182,212,0.14) 0%,
-        rgba(6,182,212,0.06) 25%,
-        rgba(6,182,212,0.02) 50%,
+        rgba(39,224,161,0.14) 0%,
+        rgba(39,224,161,0.06) 25%,
+        rgba(39,224,161,0.02) 50%,
         transparent 75%);
   }
   .demo-section::before {
@@ -448,9 +448,9 @@
     transform: translateY(-50%);
     background:
       radial-gradient(circle at center,
-        rgba(6,182,212,0.22) 0%,
-        rgba(6,182,212,0.09) 30%,
-        rgba(6,182,212,0.025) 55%,
+        rgba(39,224,161,0.22) 0%,
+        rgba(39,224,161,0.09) 30%,
+        rgba(39,224,161,0.025) 55%,
         transparent 75%);
     pointer-events: none;
     z-index: 0;
@@ -494,9 +494,9 @@
     inset: -140px -100px;
     background:
       radial-gradient(ellipse 55% 50% at 50% 50%,
-        rgba(6,182,212,0.28) 0%,
-        rgba(6,182,212,0.13) 25%,
-        rgba(6,182,212,0.04) 50%,
+        rgba(39,224,161,0.28) 0%,
+        rgba(39,224,161,0.13) 25%,
+        rgba(39,224,161,0.04) 50%,
         transparent 75%);
     filter: blur(50px);
     pointer-events: none;
@@ -505,8 +505,8 @@
   .popup-card {
     background:
       radial-gradient(ellipse 100% 50% at 50% 0%,
-        rgba(6,182,212,0.14) 0%,
-        rgba(6,182,212,0.04) 30%,
+        rgba(39,224,161,0.14) 0%,
+        rgba(39,224,161,0.04) 30%,
         transparent 65%),
       linear-gradient(180deg,
         #2e2e2e 0%,
@@ -521,8 +521,8 @@
       inset 0 1px 0 rgba(255,255,255,0.14),
       inset 0 -1px 0 rgba(0,0,0,0.6),
       0 40px 80px rgba(0,0,0,0.65),
-      0 0 100px rgba(6,182,212,0.16),
-      0 0 200px rgba(6,182,212,0.06);
+      0 0 100px rgba(39,224,161,0.16),
+      0 0 200px rgba(39,224,161,0.06);
     animation: floatCard 5s ease-in-out infinite;
     position: relative;
     z-index: 1;
@@ -537,7 +537,7 @@
     /* faint cyan glow ribbon under the top line */
     content: '';
     position: absolute; top: 0; left: 0; right: 0; height: 60px;
-    background: linear-gradient(to bottom, rgba(6,182,212,0.08), transparent);
+    background: linear-gradient(to bottom, rgba(39,224,161,0.08), transparent);
     pointer-events: none;
   }
 
@@ -560,8 +560,8 @@
     border-radius: 5px;
   }
   .grade-badge {
-    background: rgba(6,182,212,0.12);
-    border: 1px solid rgba(6,182,212,0.3);
+    background: rgba(39,224,161,0.12);
+    border: 1px solid rgba(39,224,161,0.3);
     color: var(--cyan);
     font-family: var(--font-mono);
     font-size: 10px;
@@ -605,8 +605,8 @@
     color: var(--white);
   }
   .popup-context {
-    background: rgba(6,182,212,0.05);
-    border-left: 2px solid rgba(6,182,212,0.45);
+    background: rgba(39,224,161,0.05);
+    border-left: 2px solid rgba(39,224,161,0.45);
     padding: 12px 14px;
     border-radius: 0 6px 6px 0;
     font-family: var(--font-ko);
@@ -639,8 +639,8 @@
     transition: all 0.2s;
   }
   .prompt-item:hover {
-    background: rgba(6,182,212,0.06);
-    border-color: rgba(6,182,212,0.2);
+    background: rgba(39,224,161,0.06);
+    border-color: rgba(39,224,161,0.2);
     border-left-color: var(--cyan);
     transform: translateX(2px);
   }
@@ -674,7 +674,7 @@
     letter-spacing: -0.2px;
     cursor: pointer; transition: all 0.2s;
   }
-  .btn-copy:hover { background: #22d3ee; }
+  .btn-copy:hover { background: #4de8b3; }
   .btn-save {
     padding: 11px 16px;
     background: transparent;
@@ -694,9 +694,9 @@
     isolation: isolate;
     background:
       radial-gradient(ellipse 60% 70% at 22% 50%,
-        rgba(6,182,212,0.14) 0%,
-        rgba(6,182,212,0.06) 28%,
-        rgba(6,182,212,0.02) 55%,
+        rgba(39,224,161,0.14) 0%,
+        rgba(39,224,161,0.06) 28%,
+        rgba(39,224,161,0.02) 55%,
         transparent 78%);
   }
   .analysis-section::before {
@@ -708,9 +708,9 @@
     transform: translateY(-50%);
     background:
       radial-gradient(circle at center,
-        rgba(6,182,212,0.20) 0%,
-        rgba(6,182,212,0.07) 30%,
-        rgba(6,182,212,0.02) 55%,
+        rgba(39,224,161,0.20) 0%,
+        rgba(39,224,161,0.07) 30%,
+        rgba(39,224,161,0.02) 55%,
         transparent 75%);
     pointer-events: none;
     z-index: 0;
@@ -783,7 +783,7 @@
     flex-direction: column;
     background:
       radial-gradient(ellipse 100% 50% at 50% 0%,
-        rgba(6,182,212,0.08) 0%, transparent 55%),
+        rgba(39,224,161,0.08) 0%, transparent 55%),
       linear-gradient(180deg,
         #2a2a2a 0%,
         #1c1c1c 22%,
@@ -797,7 +797,7 @@
       inset 0 1px 0 rgba(255,255,255,0.13),
       inset 0 -1px 0 rgba(0,0,0,0.65),
       0 30px 60px rgba(0,0,0,0.65),
-      0 0 80px rgba(6,182,212,0.12);
+      0 0 80px rgba(39,224,161,0.12);
   }
   /* Soft horizontal edge fade — stronger now */
   .code-window::after {
@@ -903,7 +903,7 @@
     border-left-color: rgba(255,80,80,0.5);
   }
   .code-line.added {
-    background: rgba(6,182,212,0.10);
+    background: rgba(39,224,161,0.10);
     color: rgba(255,255,255,0.92);
     border-left-color: var(--cyan);
   }
@@ -922,7 +922,7 @@
   .code-result {
     border-top: 1px solid rgba(255,255,255,0.06);
     padding: 14px 20px;
-    background: linear-gradient(90deg, rgba(6,182,212,0.06), rgba(6,182,212,0.02));
+    background: linear-gradient(90deg, rgba(39,224,161,0.06), rgba(39,224,161,0.02));
     position: relative; z-index: 4;
     overflow: hidden;
   }
@@ -932,8 +932,8 @@
     position: absolute; inset: 0;
     background: linear-gradient(90deg,
       transparent 0%,
-      rgba(6,182,212,0.35) 45%,
-      rgba(6,182,212,0.0) 90%);
+      rgba(39,224,161,0.35) 45%,
+      rgba(39,224,161,0.0) 90%);
     transform: translateX(-110%);
     pointer-events: none;
     z-index: 0;
@@ -967,8 +967,8 @@
     content: '';
     position: absolute; inset: 0;
     background: linear-gradient(90deg,
-      rgba(6,182,212,0.28) 0%,
-      rgba(6,182,212,0.08) 65%,
+      rgba(39,224,161,0.28) 0%,
+      rgba(39,224,161,0.08) 65%,
       transparent 100%);
     z-index: -1;
     pointer-events: none;
@@ -982,8 +982,8 @@
   }
   .code-line.active.added::after {
     background: linear-gradient(90deg,
-      rgba(6,182,212,0.42) 0%,
-      rgba(6,182,212,0.14) 70%,
+      rgba(39,224,161,0.42) 0%,
+      rgba(39,224,161,0.14) 70%,
       transparent 100%);
   }
   /* Typing caret on currently active right-panel line */
@@ -996,7 +996,7 @@
     background: var(--cyan);
     animation: caretBlink 0.6s steps(2) infinite;
     z-index: 2;
-    box-shadow: 0 0 6px rgba(6,182,212,0.6);
+    box-shadow: 0 0 6px rgba(39,224,161,0.6);
   }
   @keyframes caretBlink {
     0%, 50% { opacity: 1; }
@@ -1019,9 +1019,9 @@
     height: 36px;
     background: linear-gradient(180deg,
       transparent 0%,
-      rgba(6,182,212,0.08) 35%,
-      rgba(6,182,212,0.18) 50%,
-      rgba(6,182,212,0.08) 65%,
+      rgba(39,224,161,0.08) 35%,
+      rgba(39,224,161,0.18) 50%,
+      rgba(39,224,161,0.08) 65%,
       transparent 100%);
     pointer-events: none;
     z-index: 4;
@@ -1035,10 +1035,10 @@
     height: 1px;
     background: linear-gradient(90deg,
       transparent,
-      rgba(6,182,212,0.7) 40%,
-      rgba(6,182,212,0.7) 60%,
+      rgba(39,224,161,0.7) 40%,
+      rgba(39,224,161,0.7) 60%,
       transparent);
-    box-shadow: 0 0 8px rgba(6,182,212,0.6);
+    box-shadow: 0 0 8px rgba(39,224,161,0.6);
   }
   .scan-beam.active {
     opacity: 1;
@@ -1054,11 +1054,11 @@
   }
   @keyframes badgePulse {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba(6,182,212,0.5);
+      box-shadow: 0 0 0 0 rgba(39,224,161,0.5);
       transform: translateY(0);
     }
     50% {
-      box-shadow: 0 0 30px 6px rgba(6,182,212,0.45);
+      box-shadow: 0 0 30px 6px rgba(39,224,161,0.45);
       transform: translateY(-1px);
     }
   }
@@ -1098,8 +1098,8 @@
     cursor: pointer;
   }
   .result-badge:hover {
-    background: #22d3ee;
-    box-shadow: 0 0 16px rgba(6,182,212,0.4);
+    background: #4de8b3;
+    box-shadow: 0 0 16px rgba(39,224,161,0.4);
   }
 
   /* ─────────────────────────────────────────────
@@ -1151,13 +1151,13 @@
     /* Cyan radial glow */
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(6,182,212,0.08), transparent 65%);
+    background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(39,224,161,0.08), transparent 65%);
     opacity: 0;
     transition: opacity 0.4s ease;
     pointer-events: none;
   }
   .feature-card:hover {
-    background: rgba(6,182,212,0.02);
+    background: rgba(39,224,161,0.02);
   }
   .feature-card:hover::before,
   .feature-card:hover::after {
@@ -1166,7 +1166,7 @@
   .feature-num {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: rgba(6,182,212,0.55);
+    color: rgba(39,224,161,0.55);
     letter-spacing: 2px;
     margin-bottom: 24px;
     position: relative; z-index: 1;
@@ -1177,8 +1177,8 @@
     font-size: 22px;
     margin-bottom: 24px;
     color: var(--cyan);
-    background: rgba(6,182,212,0.06);
-    border: 1px solid rgba(6,182,212,0.2);
+    background: rgba(39,224,161,0.06);
+    border: 1px solid rgba(39,224,161,0.2);
     border-radius: 10px;
     position: relative; z-index: 1;
   }
@@ -1250,7 +1250,7 @@
   .workflow-step::after {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 100% 60% at 50% 0%, rgba(6,182,212,0.06), transparent 70%);
+    background: radial-gradient(ellipse 100% 60% at 50% 0%, rgba(39,224,161,0.06), transparent 70%);
     opacity: 0;
     transition: opacity 0.4s;
     pointer-events: none;
@@ -1309,9 +1309,9 @@
     isolation: isolate;
     background:
       radial-gradient(ellipse 65% 75% at 75% 50%,
-        rgba(6,182,212,0.13) 0%,
-        rgba(6,182,212,0.05) 30%,
-        rgba(6,182,212,0.015) 60%,
+        rgba(39,224,161,0.13) 0%,
+        rgba(39,224,161,0.05) 30%,
+        rgba(39,224,161,0.015) 60%,
         transparent 80%);
   }
   .insight-section::before {
@@ -1323,9 +1323,9 @@
     transform: translateY(-30%);
     background:
       radial-gradient(circle at center,
-        rgba(6,182,212,0.19) 0%,
-        rgba(6,182,212,0.07) 28%,
-        rgba(6,182,212,0.02) 55%,
+        rgba(39,224,161,0.19) 0%,
+        rgba(39,224,161,0.07) 28%,
+        rgba(39,224,161,0.02) 55%,
         transparent 75%);
     pointer-events: none;
     z-index: 0;
@@ -1387,8 +1387,8 @@
   .chart-card {
     background:
       radial-gradient(ellipse 90% 60% at 30% 0%,
-        rgba(6,182,212,0.10) 0%,
-        rgba(6,182,212,0.03) 40%,
+        rgba(39,224,161,0.10) 0%,
+        rgba(39,224,161,0.03) 40%,
         transparent 75%),
       linear-gradient(180deg,
         #131313 0%,
@@ -1611,19 +1611,19 @@
   }
   .price-card:hover { background: #131313; }
   .price-card.featured {
-    background: rgba(6,182,212,0.025);
+    background: rgba(39,224,161,0.025);
   }
   .price-card.featured::before {
     content: '';
     position: absolute; top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--cyan) 30%, var(--cyan) 70%, transparent);
-    box-shadow: 0 0 12px rgba(6,182,212,0.5);
+    box-shadow: 0 0 12px rgba(39,224,161,0.5);
   }
   .price-card.featured::after {
     content: '';
     position: absolute; top: 0; left: 0; right: 0; height: 100px;
-    background: linear-gradient(to bottom, rgba(6,182,212,0.06), transparent);
+    background: linear-gradient(to bottom, rgba(39,224,161,0.06), transparent);
     pointer-events: none;
   }
 
@@ -1729,16 +1729,16 @@
   .btn-price-outline:hover {
     border-color: var(--cyan);
     color: var(--cyan);
-    background: rgba(6,182,212,0.04);
+    background: rgba(39,224,161,0.04);
   }
   .btn-price-filled {
     background: var(--cyan);
     color: #000;
-    box-shadow: 0 0 24px rgba(6,182,212,0.3);
+    box-shadow: 0 0 24px rgba(39,224,161,0.3);
   }
   .btn-price-filled:hover {
-    background: #22d3ee;
-    box-shadow: 0 4px 32px rgba(6,182,212,0.5);
+    background: #4de8b3;
+    box-shadow: 0 4px 32px rgba(39,224,161,0.5);
   }
 
   /* ─────────────────────────────────────────────
@@ -1747,8 +1747,8 @@
   .cta-section { padding: 0 0 var(--section-pad-y); }
   .cta-inner {
     background:
-      radial-gradient(ellipse 60% 80% at 50% 0%, rgba(6,182,212,0.08), transparent 70%),
-      linear-gradient(180deg, rgba(6,182,212,0.04) 0%, transparent 100%);
+      radial-gradient(ellipse 60% 80% at 50% 0%, rgba(39,224,161,0.08), transparent 70%),
+      linear-gradient(180deg, rgba(39,224,161,0.04) 0%, transparent 100%);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 120px 60px;
@@ -1762,6 +1762,86 @@
     width: 600px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--cyan), transparent);
   }
+
+  /* ── Custom Locale Switcher Dropdown ── */
+  .lang-dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  .lang-dropdown-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    background: rgba(24, 24, 27, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(63, 63, 70, 0.8);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #d4d4d8;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-ko);
+  }
+  .lang-dropdown-btn:hover {
+    border-color: rgba(39, 224, 161, 0.5);
+    color: #4de8b3;
+  }
+  .lang-dropdown-arrow {
+    font-size: 10px;
+    color: #71717a;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+  .lang-dropdown-btn.open .lang-dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .lang-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 145px;
+    background: rgba(9, 9, 11, 0.95);
+    border: 1px solid rgba(63, 63, 70, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    z-index: 1000;
+    padding: 4px 0;
+    list-style: none;
+    margin: 0;
+  }
+  .lang-option {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #a1a1aa;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    font-family: var(--font-ko);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .lang-option:hover {
+    background: rgba(39, 224, 161, 0.1);
+    color: #4de8b3;
+  }
+  .lang-option.active {
+    color: #4de8b3;
+    font-weight: 600;
+    background: rgba(39, 224, 161, 0.05);
+  }
+
   .cta-inner h2 {
     font-family: var(--font-ko);
     font-weight: 800;
@@ -1806,7 +1886,7 @@
     color: rgba(255,255,255,0.5);
     letter-spacing: -0.3px;
   }
-  .footer-logo span em { color: var(--cyan); font-style: normal; opacity: 0.8; }
+  .footer-logo span em { color: var(--white); font-style: normal; opacity: 0.8; }
   footer > p {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -1964,15 +2044,34 @@
 <!-- ─────── NAV ─────── -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="assets/icon.png" alt="IdeaTok">
-    <span class="nav-logo-text">Idea<em>Tok</em></span>
+    <img src="assets/icon.png" alt="Limina">
+    <span class="nav-logo-text">Lim<em>ina</em></span>
   </a>
   <div class="nav-links">
     <a href="#how">기능</a>
     <a href="#workflow">작동 방식</a>
     <a href="#pricing">요금제</a>
     <a href="#download">다운로드</a>
-    <div class="nav-auth">
+    <div class="nav-auth" style="display: flex; align-items: center; gap: 12px;">
+      <!-- 커스텀 로케일 셀렉터 -->
+      <div class="lang-dropdown-container">
+        <button
+          type="button"
+          id="lang-dropdown-btn"
+          class="lang-dropdown-btn"
+        >
+          <span id="lang-dropdown-current">KR 한국어</span>
+          <span id="lang-dropdown-arrow" class="lang-dropdown-arrow">▼</span>
+        </button>
+        <ul id="lang-dropdown-menu" class="lang-dropdown-menu" style="display: none;">
+          <li><button type="button" class="lang-option active" data-lang="ko">KR 한국어</button></li>
+          <li><button type="button" class="lang-option" data-lang="en">US English</button></li>
+          <li><button type="button" class="lang-option" data-lang="ja">JP 日本語</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-CN">CN 简体中文</button></li>
+          <li><button type="button" class="lang-option" data-lang="zh-TW">TW 繁體中文</button></li>
+          <li><button type="button" class="lang-option" data-lang="es">ES Español</button></li>
+        </ul>
+      </div>
       <a href="#" class="nav-login">Login</a>
       <a href="#" class="nav-signup">Sign Up</a>
     </div>
@@ -1991,7 +2090,7 @@
   <h1 class="hero-title en">
     <span class="line dim">YOUR</span>
     <span class="line accent">IDEA</span>
-    <span class="line">TOK</span>
+    <span class="line">LIMINA</span>
   </h1>
   <p class="hero-sub-title">나만의 <span style="color: #fd9547;">아이디어</span> 배달부</p>
   <p class="hero-desc">
@@ -2017,7 +2116,7 @@
     <div class="demo-text">
       <p class="section-label">02 — HOW IT WORKS</p>
       <h2 class="h-section">팝업 하나로<br><em>모든 것이</em><br>시작된다</h2>
-      <p>평소처럼 뉴스를 읽고, 유튜브를 보고, AI와 대화하세요. 아이디어 톡이 백그라운드에서 조용히 데이터를 쌓고, 진짜 가치 있는 아이디어가 발견된 순간에만 팝업을 띄웁니다.</p>
+      <p>평소처럼 뉴스를 읽고, 유튜브를 보고, AI와 대화하세요. Limina가 백그라운드에서 조용히 데이터를 쌓고, 진짜 가치 있는 아이디어가 발견된 순간에만 팝업을 띄웁니다.</p>
       <p>팝업을 클릭하면 아이디어 뼈대와 함께 단계별 AI 프롬프트가 준비되어 있습니다. 복사 한 번으로 당신이 쓰는 AI에게 바로 질문하세요.</p>
     </div>
     <div class="popup-demo">
@@ -2025,7 +2124,7 @@
         <div class="popup-header">
           <div class="popup-logo">
             <img src="assets/icon.png" alt="">
-            <span>IDEA TOK</span>
+            <span>LIMINA</span>
           </div>
           <span class="grade-badge">GOLD · 9.2/10</span>
         </div>
@@ -2088,7 +2187,7 @@
         <div class="code-dot yellow"></div>
         <div class="code-dot green"></div>
         <span class="code-title">daily_log.txt → idea_analysis.py</span>
-        <span class="code-badge">IDEA TOK ◈</span>
+        <span class="code-badge">LIMINA ◈</span>
       </div>
       <div class="code-split">
         <div class="code-panel left">
@@ -2408,9 +2507,9 @@
 <footer>
   <div class="footer-logo">
     <img src="assets/icon.png" alt="">
-    <span>Idea<em>Tok</em></span>
+    <span>Lim<em>ina</em></span>
   </div>
-  <p>© 2026 IDEATOK · ALL RIGHTS RESERVED</p>
+  <p>© 2026 Limina · ALL RIGHTS RESERVED</p>
 </footer>
 
 <script>
@@ -2500,7 +2599,7 @@
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
           ctx.strokeStyle = cyan
-            ? `rgba(6,182,212,${alpha})`
+            ? `rgba(39,224,161,${alpha})`
             : `rgba(255,255,255,${alpha * 0.5})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
@@ -2512,7 +2611,7 @@
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fillStyle = p.cyan
-        ? `rgba(6,182,212,${p.op})`
+        ? `rgba(39,224,161,${p.op})`
         : `rgba(255,255,255,${p.op * 0.55})`;
       ctx.fill();
 
@@ -2659,7 +2758,7 @@
     c.moveTo(padL, goldY);
     c.lineTo(W - padR, goldY);
     c.setLineDash([4, 4]);
-    c.strokeStyle = 'rgba(6,182,212,0.22)';
+    c.strokeStyle = 'rgba(39,224,161,0.22)';
     c.lineWidth = 1;
     c.stroke();
     c.setLineDash([]);
@@ -2669,7 +2768,7 @@
     medianLine.forEach((p, i) => {
       if (i === 0) c.moveTo(p.cx, p.y); else c.lineTo(p.cx, p.y);
     });
-    c.strokeStyle = 'rgba(6,182,212,0.35)';
+    c.strokeStyle = 'rgba(39,224,161,0.35)';
     c.lineWidth = 1.4;
     c.stroke();
 
@@ -2681,8 +2780,8 @@
     c.lineTo(medianLine[0].cx, padT + chartH);
     c.closePath();
     const fillGrad = c.createLinearGradient(0, padT, 0, padT + chartH);
-    fillGrad.addColorStop(0, 'rgba(6,182,212,0.10)');
-    fillGrad.addColorStop(1, 'rgba(6,182,212,0)');
+    fillGrad.addColorStop(0, 'rgba(39,224,161,0.10)');
+    fillGrad.addColorStop(1, 'rgba(39,224,161,0)');
     c.fillStyle = fillGrad;
     c.fill();
 
@@ -2721,12 +2820,12 @@
         const haloA = 0.10 + twinkle * 0.18;
         c.beginPath();
         c.arc(x, y, haloR, 0, Math.PI * 2);
-        c.fillStyle = `rgba(6,182,212,${haloA.toFixed(3)})`;
+        c.fillStyle = `rgba(39,224,161,${haloA.toFixed(3)})`;
         c.fill();
 
         c.beginPath();
         c.arc(x, y, d.r, 0, Math.PI * 2);
-        c.fillStyle = `rgba(6,182,212,${(d.alpha * (0.85 + twinkle * 0.15)).toFixed(3)})`;
+        c.fillStyle = `rgba(39,224,161,${(d.alpha * (0.85 + twinkle * 0.15)).toFixed(3)})`;
         c.fill();
       } else {
         const a = d.alpha * (0.7 + twinkle * 0.3);
@@ -2875,11 +2974,53 @@
   btn.addEventListener('click', function(){
     const orig = this.textContent;
     this.textContent = '복사 완료 ✓';
-    this.style.background = '#22d3ee';
+    this.style.background = '#4de8b3';
     setTimeout(() => {
       this.textContent = orig;
       this.style.background = '';
     }, 1800);
+  });
+})();
+
+/* ───────── Language Dropdown Handler ───────── */
+(function() {
+  const dropdownBtn = document.getElementById('lang-dropdown-btn');
+  const dropdownMenu = document.getElementById('lang-dropdown-menu');
+  const dropdownCurrent = document.getElementById('lang-dropdown-current');
+  
+  if (!dropdownBtn || !dropdownMenu) return;
+  
+  dropdownBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = dropdownMenu.style.display === 'block';
+    dropdownMenu.style.display = isOpen ? 'none' : 'block';
+    dropdownBtn.classList.toggle('open', !isOpen);
+  });
+  
+  document.addEventListener('click', function() {
+    dropdownMenu.style.display = 'none';
+    dropdownBtn.classList.remove('open');
+  });
+  
+  const options = dropdownMenu.querySelectorAll('.lang-option');
+  options.forEach(opt => {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      // Update active state
+      options.forEach(o => o.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Update button text
+      const label = this.textContent.trim();
+      dropdownCurrent.textContent = label;
+      
+      // Close dropdown
+      dropdownMenu.style.display = 'none';
+      dropdownBtn.classList.remove('open');
+      
+      console.log('Language changed to:', this.getAttribute('data-lang'));
+    });
   });
 })();
 </script>

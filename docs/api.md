@@ -1,6 +1,6 @@
-# IdeaTok API & 통신 스펙 (api.md)
+﻿# Limina API & 통신 스펙 (api.md)
 
-> 이 문서는 IdeaTok의 **모든 통신 인터페이스**를 정의합니다.
+> 이 문서는 Limina의 **모든 통신 인터페이스**를 정의합니다.
 > 익스텐션 ↔ 데스크톱 앱 ↔ Supabase ↔ Claude API ↔ 포트원/Stripe 간 모든 요청/응답 포맷이 명시돼 있습니다.
 
 ---
@@ -31,7 +31,7 @@
                │ HTTPS                 └──────────────────┘
 ┌──────────────┴─────────────┐
 │  웹 대시보드 (Next.js)      │
-│  - ideatok.com              │
+│  - Limina.com              │
 └────────────────────────────┘
 ```
 
@@ -53,7 +53,7 @@
 
 - 첫 실행 시 **32자 랜덤 토큰** 생성 → `config.json`에 저장
 - 익스텐션 설치 시 옵션 페이지에서 토큰 입력
-- 모든 요청 헤더에 `X-IdeaTok-Token: {token}` 필수
+- 모든 요청 헤더에 `X-Limina-Token: {token}` 필수
 - 토큰 불일치 시 401 응답
 
 ---
@@ -67,7 +67,7 @@
 ```http
 POST http://localhost:7421/collect
 Content-Type: application/json
-X-IdeaTok-Token: {32자토큰}
+X-Limina-Token: {32자토큰}
 
 {
   "source": "youtube",
@@ -113,7 +113,7 @@ X-IdeaTok-Token: {32자토큰}
 
 ```http
 GET http://localhost:7421/status
-X-IdeaTok-Token: {token}
+X-Limina-Token: {token}
 ```
 
 **Response**
@@ -133,7 +133,7 @@ X-IdeaTok-Token: {token}
 
 ```http
 GET http://localhost:7421/config
-X-IdeaTok-Token: {token}
+X-Limina-Token: {token}
 ```
 
 **Response**
@@ -566,8 +566,8 @@ async function startPortonePayment(userId: string) {
   const response = await PortOne.requestPayment({
     storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
     channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
-    paymentId: `ideatok-pro-${Date.now()}-${userId}`,
-    orderName: 'IdeaTok Pro 월 구독',
+    paymentId: `Limina-pro-${Date.now()}-${userId}`,
+    orderName: 'Limina Pro 월 구독',
     totalAmount: 9900,
     currency: 'KRW',
     payMethod: 'EASY_PAY',
@@ -657,8 +657,8 @@ export async function POST(req: Request) {
   const session = await stripe.checkout.sessions.create({
     mode: 'subscription',
     line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `https://ideatok.com/${locale}/dashboard?payment=success`,
-    cancel_url: `https://ideatok.com/${locale}/pricing`,
+    success_url: `https://Limina.com/${locale}/dashboard?payment=success`,
+    cancel_url: `https://Limina.com/${locale}/pricing`,
     customer_email: req.headers.get('x-user-email') ?? undefined,
     client_reference_id: userId,
     locale: locale as Stripe.Checkout.SessionCreateParams.Locale,
@@ -733,9 +733,9 @@ serve(async (req) => {
 
 | OS | 경로 |
 |---|---|
-| Windows | `%APPDATA%/IdeaTok/` |
-| Mac | `~/Library/Application Support/IdeaTok/` |
-| Linux | `~/.config/IdeaTok/` |
+| Windows | `%APPDATA%/Limina/` |
+| Mac | `~/Library/Application Support/Limina/` |
+| Linux | `~/.config/Limina/` |
 
 Electron `app.getPath('userData')` 사용하면 자동 분기.
 
@@ -763,7 +763,7 @@ Electron `app.getPath('userData')` 사용하면 자동 분기.
 ### 9-1. 최신 버전 확인
 
 ```http
-GET https://api.github.com/repos/{org}/ideatok-desktop/releases/latest
+GET https://api.github.com/repos/{org}/Limina-desktop/releases/latest
 ```
 
 **Response (요약)**
@@ -771,21 +771,21 @@ GET https://api.github.com/repos/{org}/ideatok-desktop/releases/latest
 ```json
 {
   "tag_name": "v1.0.1",
-  "name": "IdeaTok v1.0.1",
+  "name": "Limina v1.0.1",
   "assets": [
     {
-      "name": "IdeaTok-Setup-1.0.1.exe",
-      "browser_download_url": "https://github.com/.../IdeaTok-Setup-1.0.1.exe",
+      "name": "Limina-Setup-1.0.1.exe",
+      "browser_download_url": "https://github.com/.../Limina-Setup-1.0.1.exe",
       "size": 80000000
     },
     {
-      "name": "IdeaTok-1.0.1.dmg",
-      "browser_download_url": "https://github.com/.../IdeaTok-1.0.1.dmg",
+      "name": "Limina-1.0.1.dmg",
+      "browser_download_url": "https://github.com/.../Limina-1.0.1.dmg",
       "size": 85000000
     },
     {
-      "name": "IdeaTok-1.0.1.AppImage",
-      "browser_download_url": "https://github.com/.../IdeaTok-1.0.1.AppImage",
+      "name": "Limina-1.0.1.AppImage",
+      "browser_download_url": "https://github.com/.../Limina-1.0.1.AppImage",
       "size": 90000000
     }
   ]
@@ -799,8 +799,8 @@ import { autoUpdater } from 'electron-updater';
 
 autoUpdater.setFeedURL({
   provider: 'github',
-  owner: 'ideatok',
-  repo: 'ideatok-desktop',
+  owner: 'Limina',
+  repo: 'Limina-desktop',
 });
 
 // 1. 앱 시작 시 + 매일 자정 자동 체크
@@ -871,7 +871,7 @@ autoUpdater.on('update-downloaded', () => {
 ### 11-2. 로컬 서버 보호
 
 - 127.0.0.1만 바인딩 (외부 IP 차단)
-- 모든 요청 `X-IdeaTok-Token` 검증
+- 모든 요청 `X-Limina-Token` 검증
 - CORS는 `chrome-extension://` 만 허용
 - HTTP만 사용 (localhost는 HTTPS 불필요)
 

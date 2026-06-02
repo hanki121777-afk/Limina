@@ -1,1 +1,249 @@
-{}
+{
+  "nav": {
+    "links": {
+      "features": "Features",
+      "workflow": "Workflow",
+      "pricing": "Pricing",
+      "download": "Download"
+    },
+    "auth": {
+      "login": "Login",
+      "signup": "Sign Up",
+      "dashboard": "Go to Dashboard"
+    },
+    "mobileToggle": "Open Menu"
+  },
+  "hero": {
+    "badge": "ON-DEVICE AI · IDEA CAPTURE",
+    "subTitle": "Your Personal <highlight>Idea</highlight> Courier",
+    "desc": "Collects your everyday data quietly while you use your PC.\nWe notify you only at the moment a truly great idea is captured.",
+    "descMeta": "Supports Windows · Mac · Linux · 6 Languages",
+    "buttons": {
+      "download": "Download Free",
+      "dashboard": "Go to Dashboard",
+      "how": "How it Works"
+    }
+  },
+  "demo": {
+    "label": "02 — HOW IT WORKS",
+    "title": "Everything Starts with a <highlight>Single Popup</highlight>",
+    "desc1": "Read news, watch YouTube, and talk to AI as usual. Limina quietly accumulates data in the background, showing a popup only when a truly valuable idea is found.",
+    "desc2": "Click the popup to find the idea framework along with step-by-step AI prompts. Copy with one click and ask your favorite AI directly.",
+    "card": {
+      "logo": "LIMINA",
+      "gradeBadge": "GOLD · 9.2/10",
+      "score": "// 4 Days Data Fusion Analysis Completed",
+      "title": "Smart Drone Delivery Box\nwith Anti-Theft Protection",
+      "context": "Drone delivery deregulation news × Clipboard text regarding package theft",
+      "desc": "A smart delivery box attached to apartment verandas in the drone delivery era. Anti-theft lock + noise dampening pad + subscription model.",
+      "prompts": {
+        "p1": "Analyze the size of the drone delivery market and the initial target audience.",
+        "p2": "Suggest 3 differentiators compared to similar overseas services.",
+        "p3": "6-month revenue simulation based on $9.90/month subscription."
+      },
+      "btnCopy": "Copy Prompt →",
+      "copiedText": "Copied ✓",
+      "btnSave": "Archive"
+    }
+  },
+  "analysis": {
+    "label": "03 — AI ANALYSIS",
+    "title": "Your Daily Life is Calculated into <highlight>Ideas</highlight>",
+    "desc": "AI quietly analyzes collected text logs. It finds patterns, scores them, and alerts you only when the score is 8 or higher.",
+    "stats": {
+      "retention": {
+        "num": "7<unit>d</unit>",
+        "label": "Rolling Data Retention"
+      },
+      "alert": {
+        "num": "8<unit>pts+</unit>",
+        "label": "Min Score for Alert"
+      },
+      "lag": {
+        "num": "0<unit>lag</unit>",
+        "label": "Runs Only on Idle"
+      }
+    },
+    "code": {
+      "title": "daily_log.txt → idea_analysis.py",
+      "panelLeftLabel": "COLLECTED DATA (RAW)",
+      "panelRightLabel": "AI ANALYSIS RESULT",
+      "resultText": "GOLD Idea Captured",
+      "resultBadge": "Send Alert →",
+      "linesLeft": {
+        "l1": "[09:14 News] Drone delivery deregulation",
+        "l2": "[11:30 YouTube] Smart home subscription model",
+        "l3": "[13:05 Clipboard] Package theft damage...",
+        "l4": "[15:22 News] Apartment security reinforcement law",
+        "l5": "[16:40 Kakao] Our home got stolen again",
+        "l6": "[18:10 YouTube] Unmanned delivery box review",
+        "l7": "[19:30 Search] \"Single-person household security solution\"",
+        "l8": "[20:15 News] AI drone market 2030 forecast",
+        "l9": "[21:05 Clipboard] Subscription SaaS model",
+        "l10": "[22:30 Memo] Veranda = Drone Dock?",
+        "l11": "[23:45 YouTube] IoT security trend"
+      }
+    }
+  },
+  "features": {
+    "label": "04 — FEATURES",
+    "title": "Turn Off Spams, Turn On <highlight>Inspirations</highlight>",
+    "desc": "No forced thinking. Alerts ring only at truly valuable moments.",
+    "items": {
+      "gatekeeper": {
+        "title": "2-Step Gatekeeper",
+        "desc": "Applies AI scoring after data density check. Alerts only for 8+ scores. Low scores are quietly discarded."
+      },
+      "rolling": {
+        "title": "7-Day Rolling Synergy",
+        "desc": "Analyzes a whole week of data. Monday's news and Thursday's memo merge to create a great business idea."
+      },
+      "idle": {
+        "title": "Idle Time Analysis",
+        "desc": "Wakes up AI only when the PC is idle. Quietly collects text during normal use. Zero lag guaranteed."
+      },
+      "custom": {
+        "title": "Interest Customization",
+        "desc": "AI reflects your initial interest categories. Only ideas tailored to you are delivered."
+      },
+      "ondevice": {
+        "title": "Complete On-Device",
+        "desc": "All data is stored only on your PC. No external server transmission. API calls only for analysis."
+      },
+      "prompts": {
+        "title": "Step-by-Step AI Prompts",
+        "desc": "Provides 3-5 validation prompts for each idea. Start planning with one-click copy to your AI."
+      }
+    }
+  },
+  "workflow": {
+    "label": "05 — WORKFLOW",
+    "title": "From Collection to Inspiration, <highlight>Automatically</highlight>",
+    "desc": "No action required after installation. Just use your PC as usual.",
+    "steps": {
+      "step1": {
+        "title": "Real-time Collection",
+        "desc": "Chrome/Edge extension + desktop app quietly collect text only from YouTube, news, AI chats, office files, and clipboard. Supports Windows, Mac, and Linux.",
+        "tag": "AI OFF · Zero Lag"
+      },
+      "step2": {
+        "title": "7-Day Rolling Storage",
+        "desc": "Stores the last 7 days of data. Old data meets new data to create cross-synergies.",
+        "tag": "Auto Discard on Day 8"
+      },
+      "step3": {
+        "title": "Idle Time Analysis",
+        "desc": "When the PC is idle, data passing the 2-step gate is analyzed by Cloud AI. Under 8 points is quietly discarded.",
+        "tag": "Claude API (Haiku · Sonnet)"
+      },
+      "step4": {
+        "title": "Inspiration Delivery",
+        "desc": "Popup alerts notify you only when a GOLD idea is captured. Check the idea framework + 5 step-by-step prompts on the dashboard and pass them to external AI.",
+        "tag": "One-click Copy → Toss to AI"
+      }
+    }
+  },
+  "insight": {
+    "label": "06 — IDEA DASHBOARD",
+    "title": "Captured Ideas <highlight>at a Glance</highlight>",
+    "desc": "Check captured ideas anytime on the web dashboard. Save favorite ideas with a star.",
+    "pulseCard": {
+      "title": "Idea Archive · May Week 3",
+      "subLabel": "CAPTURED IDEAS · List / ★ Starred / Delete",
+      "item1": {
+        "title": "Drone Smart Delivery Box",
+        "meta": "Collected 4d · Drone News × Theft Clipboard",
+        "b1": "Fusion of drone delivery deregulation and apartment security needs",
+        "b2": "Applicable subscription hardware SaaS model"
+      },
+      "item2": {
+        "title": "RPG Routine Management App",
+        "meta": "Collected 2d · Game YouTube × Solo-life Recipe",
+        "b1": "Aligns with gamification productivity tool trend",
+        "b2": "Potential blue ocean in target app market for single households"
+      }
+    },
+    "chartCard": {
+      "title": "IDEA SCORE DISTRIBUTION",
+      "categories": {
+        "news": "News",
+        "youtube": "YouTube",
+        "ai": "AI Chat"
+      },
+      "legend": {
+        "gold": "GOLD",
+        "silver": "SILVER",
+        "burned": "BURNED"
+      },
+      "footer": {
+        "gold": "GOLD Captured",
+        "silver": "SILVER Captured",
+        "starred": "★ Starred",
+        "best": "Best Score"
+      }
+    },
+    "nav": {
+      "list": "Full List",
+      "starred": "★ Favorites",
+      "detail": "View Details"
+    }
+  },
+  "pricing": {
+    "label": "07 — PRICING",
+    "title": "Simple <highlight>Pricing</highlight>",
+    "desc": "Free installation. Upgrade when you need truly great ideas.",
+    "free": {
+      "tier": "FREE",
+      "amount": "0",
+      "unit": "USD",
+      "period": "Free Forever",
+      "features": {
+        "f1": "SILVER / REPORT alerts",
+        "f2": "10 alerts / month",
+        "f3": "30 days idea storage",
+        "f4": "Chrome & Edge extensions included"
+      },
+      "btn": "Get Started"
+    },
+    "pro": {
+      "tier": "PRO",
+      "amount": "9.90",
+      "unit": "USD",
+      "period": "/ month · Cancel anytime",
+      "features": {
+        "f1": "GOLD tier unlocked",
+        "f2": "Claude Sonnet API analysis",
+        "f3": "Unlimited alerts",
+        "f4": "5 step-by-step prompts",
+        "f5": "Unlimited idea storage"
+      },
+      "btn": "Start Pro"
+    },
+    "yearly": {
+      "tier": "1-Year Pass",
+      "amount": "69.00",
+      "unit": "USD",
+      "period": "Early Bird · 40% Off",
+      "features": {
+        "f1": "1 Year Pro Access",
+        "f2": "Save 40% compared to monthly",
+        "f3": "Early Bird exclusive benefits",
+        "f4": "Priority support"
+      },
+      "btn": "Buy Early Bird"
+    }
+  },
+  "cta": {
+    "title": "Don't Miss <highlight>Ideas</highlight> Starting Today",
+    "desc": "2-minute setup. Then, just use your PC as usual.\nA truly great idea is waiting for you.",
+    "buttons": {
+      "win": "⊞ Download for Windows",
+      "mac": "⌘ Download for Mac",
+      "linux": "🐧 Download for Linux"
+    },
+    "meta": "Extensions are automatically guided after installation · 6 Languages supported"
+  },
+  "footer": {
+    "rights": "© 2026 Limina · ALL RIGHTS RESERVED"
+  }
+}

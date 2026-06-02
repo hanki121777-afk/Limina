@@ -1,18 +1,67 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useParams, useRouter, usePathname } from 'next/navigation';
+import { useParams, useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { supabase } from '@/lib/supabaseClient';
 import { signOut } from '@/lib/auth';
 import { Idea } from '../../../../../../shared/types/idea';
+import { ArrowLeft } from 'lucide-react';
+
+// 난이도 별점 렌더러 함수
+function renderDifficultyStars(difficulty: string | number) {
+  const diffStr = String(difficulty).trim();
+  let stars = 0;
+  let maxStars = 3;
+
+  if (diffStr.includes('★') || diffStr.includes('⭐')) {
+    return <span className="text-amber-400 font-mono">{diffStr}</span>;
+  }
+
+  if (diffStr === '상' || diffStr === '높음' || diffStr.toLowerCase() === 'high' || diffStr === '3') {
+    stars = 3;
+    maxStars = 3;
+  } else if (diffStr === '중' || diffStr === '보통' || diffStr.toLowerCase() === 'medium' || diffStr === '2') {
+    stars = 2;
+    maxStars = 3;
+  } else if (diffStr === '하' || diffStr === '낮음' || diffStr.toLowerCase() === 'low' || diffStr === '1') {
+    stars = 1;
+    maxStars = 3;
+  } else {
+    const num = parseInt(diffStr, 10);
+    if (!isNaN(num)) {
+      stars = num;
+      maxStars = 5;
+    } else {
+      return <span className="text-zinc-300 font-medium">{diffStr}</span>;
+    }
+  }
+
+  return (
+    <span className="text-amber-400 font-mono text-sm tracking-wider">
+      {'★'.repeat(stars)}{'☆'.repeat(Math.max(0, maxStars - stars))}
+    </span>
+  );
+}
+
+const LANGUAGES = [
+  { code: 'ko', label: 'KR 한국어' },
+  { code: 'en', label: 'US English' },
+  { code: 'ja', label: 'JP 日本語' },
+  { code: 'zh-CN', label: 'CN 简体中文' },
+  { code: 'zh-TW', label: 'TW 繁體中文' },
+  { code: 'es', label: 'ES Español' }
+];
 
 export default function IdeaDetailPage() {
   const t = useTranslations('ideas');
+  const tCommon = useTranslations('common');
   const params = useParams();
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const from = searchParams.get('from');
   
   const locale = (params?.locale as string) || 'en';
   const ideaId = params?.id as string;
@@ -24,6 +73,9 @@ export default function IdeaDetailPage() {
   
   // 개별 프롬프트의 복사 상태 제어용 객체 (키: step 번호, 값: 복사완료 여부)
   const [copiedSteps, setCopiedSteps] = useState<Record<number, boolean>>({});
+
+  // 언어 선택 드롭다운 상태
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   // ─────────────────────────────────────────────────────────
   // 1. 인증 가드 및 2중 소유권 검증
@@ -60,7 +112,7 @@ export default function IdeaDetailPage() {
 
       // 2중 보안 가드: 조회한 아이디어의 소유자 user_id가 현재 로그인 유저 ID와 다르면 추방
       if (retrievedIdea.user_id !== userId) {
-        console.warn('[IdeaTok Guard] Unauthorized data access attempt. Redirecting.');
+        console.warn('[Limina Guard] Unauthorized data access attempt. Redirecting.');
         router.replace(`/${locale}/dashboard`);
         return;
       }
@@ -130,7 +182,7 @@ export default function IdeaDetailPage() {
       className="min-h-screen bg-black text-white font-sans overflow-y-auto"
       style={{
         backgroundImage: `
-          radial-gradient(circle at top center, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+          radial-gradient(circle at top center, rgba(39, 224, 161, 0.08) 0%, transparent 60%),
           linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
           linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px)
         `,
@@ -147,36 +199,66 @@ export default function IdeaDetailPage() {
             onClick={() => router.push(`/${locale}/dashboard`)}
           >
             <Image 
-              src="/assets/ideatik-icon-cyan.png" 
-              alt="IdeaTok Logo" 
+              src="/assets/limina-icon-cyan.png" 
+              alt="Limina Logo" 
               width={24} 
               height={24} 
             />
             <span className="text-md font-bold tracking-tight text-white font-en">
-              Idea<em className="text-cyan-400 not-italic">Tok</em>
+              Lim<em className="text-white not-italic">ina</em>
             </span>
           </div>
 
           {/* 우측 네비게이션 */}
           <div className="flex items-center gap-4 text-xs">
-            <span className="text-zinc-500 hidden sm:inline">{userEmail}</span>
-            <select
-              value={locale}
-              onChange={(e) => handleLanguageChange(e.target.value)}
-              className="bg-zinc-900 text-zinc-300 border border-zinc-800 rounded px-2 py-1 focus:outline-none focus:border-cyan-500 font-mono"
+            <span className="text-zinc-300 hidden sm:inline">{userEmail}</span>
+            <button
+              onClick={() => router.push(`/${locale}/dashboard`)}
+              className="flex items-center gap-2 py-2 px-1 text-base text-zinc-300 hover:text-white transition-colors"
             >
-              <option value="ko">KO</option>
-              <option value="en">EN</option>
-              <option value="ja">JA</option>
-              <option value="zh-CN">简</option>
-              <option value="zh-TW">繁</option>
-              <option value="es">ES</option>
-            </select>
+              <ArrowLeft className="w-5 h-5 text-zinc-300" />
+              <span>{tCommon('dashboard')}</span>
+            </button>
+            {/* 커스텀 로케일 셀렉터 */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                className="appearance-none border border-zinc-800 bg-zinc-900/50 backdrop-blur rounded-lg px-3 py-2 text-sm text-zinc-300 w-[120px] flex items-center justify-between transition-all hover:border-cyan-500/50 hover:text-cyan-400 cursor-pointer"
+              >
+                <span>{LANGUAGES.find(l => l.code === locale)?.label.split(' ')[0]} {LANGUAGES.find(l => l.code === locale)?.label.split(' ')[1]}</span>
+                <span className="text-[10px] text-zinc-500 ml-1 transition-transform duration-200" style={{ transform: langDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
+              </button>
+              
+              {langDropdownOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setLangDropdownOpen(false)} />
+                  <ul className="absolute top-[calc(100%+8px)] left-0 w-[145px] bg-zinc-950/95 border border-zinc-800 rounded-xl shadow-2xl overflow-hidden z-50 py-1">
+                    {LANGUAGES.map((lang) => (
+                      <li key={lang.code}>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleLanguageChange(lang.code);
+                            setLangDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs transition-colors hover:bg-cyan-500/10 hover:text-cyan-400 flex items-center gap-2 ${
+                            locale === lang.code ? 'text-cyan-400 font-semibold bg-cyan-500/5' : 'text-zinc-400'
+                          }`}
+                        >
+                          {lang.label}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
             <button 
               onClick={handleSignOut}
-              className="px-3 py-1.5 text-zinc-400 border border-zinc-800 rounded hover:text-white hover:border-zinc-700 transition-all font-mono active:scale-95"
+              className="px-3 py-1.5 text-zinc-300 border border-zinc-800 rounded hover:text-white hover:border-zinc-700 transition-all font-mono active:scale-95"
             >
-              Sign Out
+              {tCommon('signOut')}
             </button>
           </div>
         </div>
@@ -188,10 +270,21 @@ export default function IdeaDetailPage() {
         {/* 뒤로가기 버튼 */}
         <div className="mb-6">
           <button
-            onClick={() => router.push(`/${locale}/dashboard`)}
-            className="text-xs text-zinc-500 hover:text-cyan-400 transition-colors font-mono"
+            onClick={() => {
+              if (from === 'settings') {
+                router.push(`/${locale}/settings?tab=stats`);
+              } else {
+                router.push(`/${locale}/dashboard`);
+              }
+            }}
+            className="flex items-center gap-2 py-2 px-1 text-base text-zinc-300 hover:text-white transition-colors"
           >
-            &lt; {t('back') || 'Back to Dashboard'}
+            <ArrowLeft className="w-5 h-5 text-zinc-300" />
+            <span>
+              {from === 'settings'
+                ? t('backToStats') || 'To My Stats'
+                : t('backToDashboard') || 'To Dashboard'}
+            </span>
           </button>
         </div>
 
@@ -213,7 +306,7 @@ export default function IdeaDetailPage() {
                 }`}>
                   {idea.grade} · {idea.score.toFixed(1)}
                 </span>
-                <span className="text-[10px] text-zinc-500 font-mono">
+                <span className="text-[10px] text-zinc-400 font-mono">
                   {new Date(idea.created_at).toLocaleDateString(locale)}
                 </span>
               </div>
@@ -247,46 +340,164 @@ export default function IdeaDetailPage() {
                 
                 {/* 1. 타겟 고객 */}
                 <div className="space-y-1">
-                  <h4 className="text-xs font-semibold text-zinc-300 flex items-center gap-1.5">
+                  <h4 className="text-xs font-semibold text-zinc-400 flex items-center gap-1.5">
                     <span className="text-cyan-400">⊙</span> {t('business.target') || 'Target Audience'}
                   </h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed pl-4">
+                  <p className="text-xs text-zinc-300 leading-relaxed pl-4">
                     {idea.business?.target || '-'}
                   </p>
                 </div>
 
                 {/* 2. 핵심 문제 */}
                 <div className="space-y-1">
-                  <h4 className="text-xs font-semibold text-zinc-300 flex items-center gap-1.5">
+                  <h4 className="text-xs font-semibold text-zinc-400 flex items-center gap-1.5">
                     <span className="text-cyan-400">⊙</span> {t('business.problem') || 'Core Problem'}
                   </h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed pl-4">
+                  <p className="text-xs text-zinc-300 leading-relaxed pl-4">
                     {idea.business?.problem || '-'}
                   </p>
                 </div>
 
                 {/* 3. 해결 솔루션 */}
                 <div className="space-y-1">
-                  <h4 className="text-xs font-semibold text-zinc-300 flex items-center gap-1.5">
+                  <h4 className="text-xs font-semibold text-zinc-400 flex items-center gap-1.5">
                     <span className="text-cyan-400">⊙</span> {t('business.solution') || 'Proposed Solution'}
                   </h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed pl-4">
+                  <p className="text-xs text-zinc-300 leading-relaxed pl-4">
                     {idea.business?.solution || '-'}
                   </p>
                 </div>
 
                 {/* 4. 수익 모델 */}
                 <div className="space-y-1">
-                  <h4 className="text-xs font-semibold text-zinc-300 flex items-center gap-1.5">
+                  <h4 className="text-xs font-semibold text-zinc-400 flex items-center gap-1.5">
                     <span className="text-cyan-400">⊙</span> {t('business.revenue') || 'Revenue Stream'}
                   </h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed pl-4">
+                  <p className="text-xs text-zinc-300 leading-relaxed pl-4">
                     {idea.business?.revenue_model || '-'}
                   </p>
                 </div>
               </div>
 
             </div>
+
+            {/* SCORE BREAKDOWN CARD */}
+            {idea.score_breakdown && (
+              <div className="border border-zinc-800 bg-zinc-900/20 p-8 rounded-2xl backdrop-blur-xl space-y-6">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-400 font-mono flex items-center gap-2">
+                  <span>📊</span> {t('scoreBreakdownTitle') || 'AI Evaluation Rubric'}
+                </h3>
+                
+                <div className="space-y-5">
+                  {[
+                    { key: 'feasibility', max: 3, label: t('scoreBreakdown.feasibility') || 'Feasibility' },
+                    { key: 'market_size', max: 2, label: t('scoreBreakdown.market_size') || 'Market Size' },
+                    { key: 'revenue_clarity', max: 2, label: t('scoreBreakdown.revenue_clarity') || 'Revenue Clarity' },
+                    { key: 'differentiation', max: 2, label: t('scoreBreakdown.differentiation') || 'Differentiation' },
+                    { key: 'user_fit', max: 1, label: t('scoreBreakdown.user_fit') || 'User Fit' }
+                  ].map((item) => {
+                    const breakdown = idea.score_breakdown?.[item.key as keyof typeof idea.score_breakdown];
+                    if (!breakdown) return null;
+                    const percent = Math.min((breakdown.score / item.max) * 100, 100);
+                    
+                    return (
+                      <div key={item.key} className="space-y-2">
+                        <div className="flex justify-between items-end text-xs">
+                          <span className="font-semibold text-zinc-200">{item.label}</span>
+                          <span className="font-mono text-cyan-400 font-semibold">
+                            {breakdown.score.toFixed(1)} / {item.max.toFixed(1)}
+                          </span>
+                        </div>
+                        <div className="w-full bg-zinc-800 h-1.5 rounded overflow-hidden">
+                          <div 
+                            className="h-full rounded transition-all duration-500 bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.5)]" 
+                            style={{ width: `${percent}%` }}
+                          />
+                        </div>
+                        {breakdown.reason && (
+                          <p className="text-[11px] text-zinc-400 leading-relaxed font-sans pl-1">
+                            &bull; {breakdown.reason}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* REALITY CHECK CARD */}
+            {idea.reality_check && (
+              <div className="border border-zinc-800 bg-zinc-900/20 p-8 rounded-2xl backdrop-blur-xl space-y-6">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-400 font-mono flex items-center gap-2">
+                  <span>⚖️</span> {t('realityCheckTitle') || 'Reality Check'}
+                </h3>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {/* 초기 비용 */}
+                  {idea.reality_check.initial_cost && (
+                    <div className="bg-zinc-950/40 border border-zinc-900 p-4 rounded-xl space-y-1">
+                      <span className="text-[10px] text-zinc-500 font-mono block uppercase">
+                        {t('realityCheck.initial_cost') || 'Initial Cost'}
+                      </span>
+                      <span className="text-xs font-semibold text-zinc-200">
+                        {idea.reality_check.initial_cost}
+                      </span>
+                    </div>
+                  )}
+                  
+                  {/* 월 운영비 */}
+                  {idea.reality_check.monthly_cost && (
+                    <div className="bg-zinc-950/40 border border-zinc-900 p-4 rounded-xl space-y-1">
+                      <span className="text-[10px] text-zinc-500 font-mono block uppercase">
+                        {t('realityCheck.monthly_cost') || 'Monthly Cost'}
+                      </span>
+                      <span className="text-xs font-semibold text-zinc-200">
+                        {idea.reality_check.monthly_cost}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* 손익분기점 */}
+                  {idea.reality_check.breakeven_point && (
+                    <div className="bg-zinc-950/40 border border-zinc-900 p-4 rounded-xl space-y-1">
+                      <span className="text-[10px] text-zinc-500 font-mono block uppercase">
+                        {t('realityCheck.breakeven_point') || 'Breakeven Point'}
+                      </span>
+                      <span className="text-xs font-semibold text-zinc-200">
+                        {idea.reality_check.breakeven_point}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* 구현 난이도 */}
+                  {idea.reality_check.difficulty && (
+                    <div className="bg-zinc-950/40 border border-zinc-900 p-4 rounded-xl space-y-1">
+                      <span className="text-[10px] text-zinc-500 font-mono block uppercase">
+                        {t('realityCheck.difficulty') || 'Difficulty'}
+                      </span>
+                      <div className="flex items-center min-h-[1.25rem]">
+                        {renderDifficultyStars(idea.reality_check.difficulty)}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* 지금 바로 할 수 있는 행동 (First Action) - 글래스모피즘 */}
+                {idea.reality_check.first_action && (
+                  <div className="bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 p-4 rounded-md space-y-2 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-full blur-2xl -mr-4 -mt-4 pointer-events-none" />
+                    <span className="text-[10px] font-bold tracking-wider block uppercase flex items-center gap-1.5 font-mono">
+                      <span className="animate-pulse text-cyan-300">⚡</span> {t('realityCheck.first_action') || 'Immediate First Step'}
+                    </span>
+                    <p className="text-xs leading-relaxed font-semibold text-cyan-300">
+                      {idea.reality_check.first_action}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
           </div>
 
           {/* ─────────────────────────────────────────────────────────
@@ -305,10 +516,10 @@ export default function IdeaDetailPage() {
                   return (
                     <div 
                       key={p.step}
-                      className="group border border-zinc-800 bg-zinc-950/40 p-5 rounded-xl transition-all duration-300 hover:border-cyan-500/40 hover:shadow-[0_0_15px_rgba(6,182,212,0.08)]"
+                      className="group border border-zinc-800 bg-zinc-950/40 p-5 rounded-xl transition-all duration-300 hover:border-cyan-500/40 hover:shadow-[0_0_15px_rgba(39,224,161,0.08)]"
                     >
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-[10px] font-bold text-zinc-500 font-mono">
+                        <span className="text-[10px] font-bold text-zinc-400 font-mono">
                           STEP 0{p.step} · {p.title}
                         </span>
                         
@@ -327,9 +538,11 @@ export default function IdeaDetailPage() {
                       </div>
                       
                       {/* 프롬프트 스크립트 */}
-                      <p className="text-xs text-zinc-300 leading-relaxed font-mono whitespace-pre-wrap select-all">
-                        {p.content}
-                      </p>
+                      <div className="mt-4 p-4 rounded-xl bg-zinc-950/80 border border-zinc-900/60 shadow-inner">
+                        <p className="text-xs text-zinc-300 leading-relaxed font-sans whitespace-pre-wrap select-all">
+                          {p.content}
+                        </p>
+                      </div>
                     </div>
                   );
                 })}

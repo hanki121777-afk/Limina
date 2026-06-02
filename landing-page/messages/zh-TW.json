@@ -1,1 +1,249 @@
-{}
+{
+  "nav": {
+    "links": {
+      "features": "功能",
+      "workflow": "工作流程",
+      "pricing": "定價",
+      "download": "下載"
+    },
+    "auth": {
+      "login": "登錄",
+      "signup": "註冊",
+      "dashboard": "前往控制台"
+    },
+    "mobileToggle": "開啟選單"
+  },
+  "hero": {
+    "badge": "ON-DEVICE AI · IDEA CAPTURE",
+    "subTitle": "你的專屬<highlight>創意</highlight>快遞員",
+    "desc": "在你使用電腦的同時，靜靜地收集你的日常數據。\n只在真正有價值的創意被發現時，才會通知你。",
+    "descMeta": "支援 Windows · Mac · Linux · 6種語言",
+    "buttons": {
+      "download": "免費下載",
+      "dashboard": "前往控制台",
+      "how": "了解工作原理"
+    }
+  },
+  "demo": {
+    "label": "02 — HOW IT WORKS",
+    "title": "一個彈窗，<highlight>一切</highlight>開始",
+    "desc1": "像往常一樣閱讀新聞、觀看YouTube、與AI對話。Limina在背景靜靜積累數據，只在發現真正有價值的創意時才彈出通知。",
+    "desc2": "點擊彈窗，你會發現創意框架和分步AI提示詞已經準備好了。一鍵複製，直接向你的AI提問。",
+    "card": {
+      "logo": "LIMINA",
+      "gradeBadge": "GOLD · 9.2/10",
+      "score": "// 4天數據融合分析完成",
+      "title": "公寓無人機專用\n防盜智慧收取箱",
+      "context": "無人機配送規制放寬新聞 × 快遞被盜剪貼簿文本",
+      "desc": "無人機配送時代，安裝在公寓陽台上的智慧收取箱。防盜鎖 + 隔音墊 + 訂閱制服務。",
+      "prompts": {
+        "p1": "分析無人機配送市場規模和初始目標客群",
+        "p2": "提出與類似海外服務的3個差異化優勢",
+        "p3": "基於每月$9.90訂閱的6個月收入模擬"
+      },
+      "btnCopy": "複製提示詞 →",
+      "copiedText": "複製成功 ✓",
+      "btnSave": "收藏"
+    }
+  },
+  "analysis": {
+    "label": "03 — AI ANALYSIS",
+    "title": "你的日常被<highlight>轉化為創意</highlight>",
+    "desc": "AI靜靜地分析收集的文字日誌。發現模式，打分，只在8分以上時通知你。",
+    "stats": {
+      "retention": {
+        "num": "7<unit>天</unit>",
+        "label": "滾動數據保留"
+      },
+      "alert": {
+        "num": "8<unit>分+</unit>",
+        "label": "通知最低標準"
+      },
+      "lag": {
+        "num": "0<unit>延遲</unit>",
+        "label": "僅在閒置時執行"
+      }
+    },
+    "code": {
+      "title": "daily_log.txt → idea_analysis.py",
+      "panelLeftLabel": "COLLECTED DATA (RAW)",
+      "panelRightLabel": "AI ANALYSIS RESULT",
+      "resultText": "GOLD 創意捕獲",
+      "resultBadge": "發送通知 →",
+      "linesLeft": {
+        "l1": "[09:14 新聞] 無人機配送規制放寬",
+        "l2": "[11:30 YouTube] 智慧家庭訂閱模式",
+        "l3": "[13:05 剪貼簿] 快遞被盜損失…",
+        "l4": "[15:22 新聞] 公寓安防強化法",
+        "l5": "[16:40 訊息] 我們家又被偷了",
+        "l6": "[18:10 YouTube] 無人快遞櫃評測",
+        "l7": "[19:30 搜尋]「獨居安全解決方案」",
+        "l8": "[20:15 新聞] AI無人機市場2030預測",
+        "l9": "[21:05 剪貼簿] 訂閱型SaaS模式",
+        "l10": "[22:30 備忘錄] 陽台 = 無人機停靠站？",
+        "l11": "[23:45 YouTube] IoT安防趨勢"
+      }
+    }
+  },
+  "features": {
+    "label": "04 — FEATURES",
+    "title": "關掉垃圾訊息，開啟<highlight>靈感</highlight>",
+    "desc": "不強迫你思考。只在真正有價值的時刻通知你。",
+    "items": {
+      "gatekeeper": {
+        "title": "兩步守門員",
+        "desc": "數據密度檢查後進行AI評分。僅8分以上通知。低分靜默丟棄。"
+      },
+      "rolling": {
+        "title": "7天滾動協同",
+        "desc": "整週數據一起分析。週一的新聞和週四的備忘錄相遇，誕生出色的商業創意。"
+      },
+      "idle": {
+        "title": "閒置時分析",
+        "desc": "僅在電腦閒置時喚醒AI。日常使用時只靜靜收集文字。零延遲保證。"
+      },
+      "custom": {
+        "title": "興趣定制",
+        "desc": "AI反映你初始設定的興趣類別。只有適合你的創意才會被推送。"
+      },
+      "ondevice": {
+        "title": "完全本地化",
+        "desc": "所有數據僅儲存在你的電腦上。不傳輸到外部伺服器。僅分析時呼叫API。"
+      },
+      "prompts": {
+        "title": "分步AI提示詞",
+        "desc": "每個創意提供3-5個驗證提示詞。一鍵複製，與你的AI開始商業規劃。"
+      }
+    }
+  },
+  "workflow": {
+    "label": "05 — WORKFLOW",
+    "title": "從收集到靈感，<highlight>全自動</highlight>",
+    "desc": "安裝後無需任何操作。像平常一樣使用電腦即可。",
+    "steps": {
+      "step1": {
+        "title": "即時收集",
+        "desc": "Chrome/Edge擴充功能 + 桌面應用靜默收集YouTube、新聞、AI對話、辦公文件和剪貼簿的純文字。支援Windows、Mac和Linux。",
+        "tag": "AI OFF · 零延遲"
+      },
+      "step2": {
+        "title": "7天滾動儲存",
+        "desc": "始終保留最近7天數據。舊數據與新數據相遇，產生交叉協同效應。",
+        "tag": "第8天自動銷毀"
+      },
+      "step3": {
+        "title": "閒置時分析",
+        "desc": "電腦閒置時，僅通過兩步篩選的數據由雲端AI分析。8分以下靜默丟棄。",
+        "tag": "Claude API (Haiku · Sonnet)"
+      },
+      "step4": {
+        "title": "靈感推送",
+        "desc": "僅在GOLD創意被捕獲時彈出通知。在Web控制台查看創意框架 + 5個分步提示詞，直接傳遞給外部AI。",
+        "tag": "一鍵複製 → 傳給AI"
+      }
+    }
+  },
+  "insight": {
+    "label": "06 — IDEA DASHBOARD",
+    "title": "捕獲的創意<highlight>一目瞭然</highlight>",
+    "desc": "隨時在Web控制台查看生成的創意。喜歡的創意用星標儲存。",
+    "pulseCard": {
+      "title": "Idea Archive · 5月第3週",
+      "subLabel": "CAPTURED IDEAS · 列表 / ★ 收藏 / 刪除",
+      "item1": {
+        "title": "無人機智慧收取箱",
+        "meta": "收集4天 · 無人機新聞 × 快遞被盜剪貼簿",
+        "b1": "無人機配送規制放寬 + 公寓安防需求融合",
+        "b2": "可應用訂閱型硬體SaaS模式"
+      },
+      "item2": {
+        "title": "RPG日程管理App",
+        "meta": "收集2天 · 遊戲YouTube × 獨居食譜",
+        "b1": "與遊戲化生產力工具趨勢一致",
+        "b2": "獨居目標App市場藍海可能性"
+      }
+    },
+    "chartCard": {
+      "title": "IDEA SCORE DISTRIBUTION",
+      "categories": {
+        "news": "新聞",
+        "youtube": "YouTube",
+        "ai": "AI對話"
+      },
+      "legend": {
+        "gold": "GOLD",
+        "silver": "SILVER",
+        "burned": "BURNED"
+      },
+      "footer": {
+        "gold": "GOLD捕獲",
+        "silver": "SILVER捕獲",
+        "starred": "★ 收藏",
+        "best": "最高分"
+      }
+    },
+    "nav": {
+      "list": "完整列表",
+      "starred": "★ 收藏夾",
+      "detail": "查看詳情"
+    }
+  },
+  "pricing": {
+    "label": "07 — PRICING",
+    "title": "簡單<highlight>定價</highlight>",
+    "desc": "免費安裝。需要真正好創意時再升級。",
+    "free": {
+      "tier": "FREE",
+      "amount": "0",
+      "unit": "USD",
+      "period": "永久免費",
+      "features": {
+        "f1": "SILVER / REPORT 通知",
+        "f2": "每月10次通知",
+        "f3": "30天創意保存",
+        "f4": "含Chrome & Edge擴充功能"
+      },
+      "btn": "免費開始"
+    },
+    "pro": {
+      "tier": "PRO",
+      "amount": "9.90",
+      "unit": "USD",
+      "period": "/ 月 · 隨時取消",
+      "features": {
+        "f1": "解鎖GOLD等級",
+        "f2": "Claude Sonnet API分析",
+        "f3": "無限通知",
+        "f4": "5個分步提示詞",
+        "f5": "無限創意保存"
+      },
+      "btn": "開始Pro"
+    },
+    "yearly": {
+      "tier": "1年通行證",
+      "amount": "69.00",
+      "unit": "USD",
+      "period": "早鳥優惠 · 40%折扣",
+      "features": {
+        "f1": "Pro 1年使用權",
+        "f2": "比月付節省40%",
+        "f3": "早鳥專屬福利",
+        "f4": "優先客服支援"
+      },
+      "btn": "購買早鳥優惠"
+    }
+  },
+  "cta": {
+    "title": "從今天起不再錯過<highlight>好創意</highlight>",
+    "desc": "2分鐘設定。之後像平常一樣使用電腦即可。\n真正的好創意正在等著你。",
+    "buttons": {
+      "win": "⊞ 下載Windows版",
+      "mac": "⌘ 下載Mac版",
+      "linux": "🐧 下載Linux版"
+    },
+    "meta": "擴充功能安裝後自動引導 · 支援6種語言"
+  },
+  "footer": {
+    "rights": "© 2026 Limina · ALL RIGHTS RESERVED"
+  }
+}

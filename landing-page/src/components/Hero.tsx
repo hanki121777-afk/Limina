@@ -1,10 +1,16 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
 export default function Hero() {
   const t = useTranslations();
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+  const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'http://localhost:3000';
+  const loginUrl = `${dashboardUrl}/${locale}/login`;
+
   const particlesCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -92,7 +98,7 @@ export default function Hero() {
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
             ctx.strokeStyle = cyan
-              ? `rgba(6, 182, 212, ${alpha})`
+              ? `rgba(39, 224, 161, ${alpha})`
               : `rgba(255, 255, 255, ${alpha * 0.5})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
@@ -106,7 +112,7 @@ export default function Hero() {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = p.cyan
-          ? `rgba(6, 182, 212, ${p.op})`
+          ? `rgba(39, 224, 161, ${p.op})`
           : `rgba(255, 255, 255, ${p.op * 0.55})`;
         ctx.fill();
 
@@ -139,20 +145,22 @@ export default function Hero() {
       <h1 className="hero-title en animate-fade-up">
         <span className="line dim">YOUR</span>
         <span className="line accent">IDEA</span>
-        <span className="line">TOK</span>
+        <span className="line">LIMINA</span>
       </h1>
       <p className="hero-sub-title animate-fade-up" style={{ animationDelay: '0.3s' }}>
-        {t('hero.subTitle').split('아이디어')[0]}
-        <span style={{ color: '#fd9547' }}>아이디어</span>
-        {t('hero.subTitle').split('아이디어')[1]}
+        {t.rich('hero.subTitle', {
+          highlight: (chunks) => <span style={{ color: '#fd9547' }}>{chunks}</span>
+        })}
       </p>
-      <p className="hero-desc animate-fade-up" style={{ animationDelay: '0.45s' }}>
-        {t('hero.desc').split('\n')[0]}<br />
-        {t('hero.desc').split('\n')[1]}<br />
-        <span style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.85em' }}>{t('hero.descMeta')}</span>
+      <p className="hero-desc animate-fade-up" style={{ animationDelay: '0.45s', whiteSpace: 'pre-line' }}>
+        {t('hero.desc')}
+        <span className="block mt-2" style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.85em' }}>{t('hero.descMeta')}</span>
       </p>
       <div className="hero-buttons animate-fade-up" style={{ animationDelay: '0.6s' }}>
-        <a href="#download" className="btn-primary">{t('hero.buttons.download')}</a>
+        <a href="#download" className="btn-primary">
+          {t('hero.buttons.download')}
+        </a>
+        <a href={loginUrl} className="btn-secondary text-cyan-400 border border-cyan-400/20 hover:border-cyan-400/50 transition-all">{t('hero.buttons.dashboard') || 'Go to Dashboard'}</a>
         <a href="#how" className="btn-secondary">{t('hero.buttons.how')}</a>
       </div>
       <div className="scroll-hint">

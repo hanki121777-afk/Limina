@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 export default function Footer() {
@@ -8,13 +8,13 @@ export default function Footer() {
     <footer>
       <div className="footer-logo">
         <Image 
-          src="/assets/ideatik-icon-cyan.png" 
-          alt="IdeaTok Logo" 
+          src="/assets/limina-icon-cyan.png" 
+          alt="Limina Logo" 
           width={24} 
           height={24} 
           className="opacity-70"
         />
-        <span>Idea<em>Tok</em></span>
+        <span>Lim<em>ina</em></span>
       </div>
       <p>{t('footer.rights')}</p>
     </footer>

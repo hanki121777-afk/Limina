@@ -9,8 +9,9 @@ export default function Pricing() {
         <div className="pricing-header">
           <p className="section-label">{t('pricing.label')}</p>
           <h2 className="h-section">
-            {t('pricing.title').split('요금제')[0]}<br />
-            <em>요금제</em>
+            {t.rich('pricing.title', {
+              highlight: (chunks) => <><br /><em>{chunks}</em></>
+            })}
           </h2>
           <p>{t('pricing.desc')}</p>
         </div>

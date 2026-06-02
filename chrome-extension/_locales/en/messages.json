@@ -1,10 +1,10 @@
-{
+﻿{
   "extName": {
-    "message": "IdeaTok - AI Idea Collector",
+    "message": "Limina - AI Idea Collector",
     "description": "The name of the extension."
   },
   "extDesc": {
-    "message": "Lightweight client that collects interesting text inputs locally and forwards them to IdeaTok's AI engine.",
+    "message": "Lightweight client that collects interesting text inputs locally and forwards them to Limina's AI engine.",
     "description": "The description of the extension."
   }
 }

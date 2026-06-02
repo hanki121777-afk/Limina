@@ -10,19 +10,13 @@ export default function Home() {
   const locale = (params?.locale as string) || 'en';
 
   useEffect(() => {
-    // 실시간 인증 리스너를 통해 비동기 세션 지연을 방어하고 정확한 방향으로 리다이렉트
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('[IdeaTok Home Redirect] Event:', event, 'Session:', session ? 'Active' : 'Null');
+    supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         router.replace(`/${locale}/dashboard`);
       } else {
         router.replace(`/${locale}/login`);
       }
     });
-
-    return () => {
-      subscription.unsubscribe();
-    };
   }, [locale, router]);
 
   return (

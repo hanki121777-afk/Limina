@@ -7,28 +7,30 @@
       "download": "다운로드"
     },
     "auth": {
-      "login": "Login",
-      "signup": "Sign Up"
+      "login": "로그인",
+      "signup": "회원가입",
+      "dashboard": "대시보드 바로가기"
     },
     "mobileToggle": "메뉴 열기"
   },
   "hero": {
     "badge": "ON-DEVICE AI · IDEA CAPTURE",
-    "subTitle": "나만의 아이디어 배달부",
+    "subTitle": "나만의 <highlight>아이디어</highlight> 배달부",
     "desc": "PC를 사용하는 동안 당신의 일상 데이터를 조용히 수집합니다.\n진짜 대박 아이디어가 포착된 그 순간에만, 당신에게 알려드립니다.",
     "descMeta": "Windows · Mac · Linux · 6개 언어 지원",
     "buttons": {
       "download": "무료로 다운로드",
+      "dashboard": "대시보드 바로가기",
       "how": "작동 방식 보기"
     }
   },
   "demo": {
     "label": "02 — HOW IT WORKS",
-    "title": "팝업 하나로 모든 것이 시작된다",
-    "desc1": "평소처럼 뉴스를 읽고, 유튜브를 보고, AI와 대화하세요. 아이디어 톡이 백그라운드에서 조용히 데이터를 쌓고, 진짜 가치 있는 아이디어가 발견된 순간에만 팝업을 띄웁니다.",
+    "title": "팝업 하나로 <highlight>모든 것이</highlight> 시작된다",
+    "desc1": "평소처럼 뉴스를 읽고, 유튜브를 보고, AI와 대화하세요. Limina가 백그라운드에서 조용히 데이터를 쌓고, 진짜 가치 있는 아이디어가 발견된 순간에만 팝업을 띄웁니다.",
     "desc2": "팝업을 클릭하면 아이디어 뼈대와 함께 단계별 AI 프롬프트가 준비되어 있습니다. 복사 한 번으로 당신이 쓰는 AI에게 바로 질문하세요.",
     "card": {
-      "logo": "IDEA TOK",
+      "logo": "LIMINA",
       "gradeBadge": "GOLD · 9.2/10",
       "score": "// 4일치 데이터 융합 분석 완료",
       "title": "아파트 드론 전용\n도난 방지 스마트 수거함",
@@ -40,24 +42,25 @@
         "p3": "월 구독 9,900원 기준 초기 6개월 수익 시뮬레이션"
       },
       "btnCopy": "프롬프트 복사 →",
+      "copiedText": "복사 완료 ✓",
       "btnSave": "보관함"
     }
   },
   "analysis": {
     "label": "03 — AI ANALYSIS",
-    "title": "당신의 일상이 아이디어로 연산된다",
+    "title": "당신의 일상이 <highlight>아이디어로</highlight> 연산된다",
     "desc": "수집된 텍스트 로그를 AI가 조용히 분석합니다. 패턴을 찾고, 점수를 매기고, 8점 이상일 때만 당신에게 알립니다.",
     "stats": {
       "retention": {
-        "num": "7일",
+        "num": "7<unit>일</unit>",
         "label": "롤링 데이터 보관"
       },
       "alert": {
-        "num": "8점+",
+        "num": "8<unit>점+</unit>",
         "label": "알림 최소 기준"
       },
       "lag": {
-        "num": "0렉",
+        "num": "0<unit>렉</unit>",
         "label": "Idle 타임에만 실행"
       }
     },
@@ -65,7 +68,7 @@
       "title": "daily_log.txt → idea_analysis.py",
       "panelLeftLabel": "COLLECTED DATA (RAW)",
       "panelRightLabel": "AI ANALYSIS RESULT",
-      "resultText": "GOLD 아이디어 포착 score: 9.2 / 10",
+      "resultText": "GOLD 아이디어 포착",
       "resultBadge": "알림 발송 →",
       "linesLeft": {
         "l1": "[09:14 뉴스] 드론 배달 규제 완화",
@@ -84,7 +87,7 @@
   },
   "features": {
     "label": "04 — FEATURES",
-    "title": "스팸은 끄고 영감만 켜다",
+    "title": "스팸은 끄고 <highlight>영감만</highlight> 켜다",
     "desc": "억지로 쥐어짜지 않습니다. 진짜 가치 있는 순간에만 울립니다.",
     "items": {
       "gatekeeper": {
@@ -115,7 +118,7 @@
   },
   "workflow": {
     "label": "05 — WORKFLOW",
-    "title": "수집부터 영감까지 자동으로",
+    "title": "수집부터 영감까지 <highlight>자동으로</highlight>",
     "desc": "설치 후 아무것도 하지 않아도 됩니다. 그냥 평소처럼 PC를 쓰세요.",
     "steps": {
       "step1": {
@@ -142,7 +145,7 @@
   },
   "insight": {
     "label": "06 — IDEA DASHBOARD",
-    "title": "포착된 아이디어 한눈에",
+    "title": "포착된 아이디어 <highlight>한눈에</highlight>",
     "desc": "생성된 아이디어를 웹 대시보드에서 언제든 확인하세요. 관심 아이디어는 별표로 저장.",
     "pulseCard": {
       "title": "Idea Archive · 5월 3주차",
@@ -162,6 +165,11 @@
     },
     "chartCard": {
       "title": "IDEA SCORE DISTRIBUTION",
+      "categories": {
+        "news": "뉴스",
+        "youtube": "유튜브",
+        "ai": "AI 대화"
+      },
       "legend": {
         "gold": "GOLD",
         "silver": "SILVER",
@@ -182,7 +190,7 @@
   },
   "pricing": {
     "label": "07 — PRICING",
-    "title": "간단한 요금제",
+    "title": "간단한 <highlight>요금제</highlight>",
     "desc": "설치는 무료. 진짜 대박 아이디어가 필요할 때 업그레이드하세요.",
     "free": {
       "tier": "FREE",
@@ -226,7 +234,7 @@
     }
   },
   "cta": {
-    "title": "오늘부터 아이디어를 놓치지 마세요",
+    "title": "오늘부터 <highlight>아이디어를</highlight> 놓치지 마세요",
     "desc": "설치 2분. 그 이후엔 평소처럼 PC를 쓰기만 하면 됩니다.\n진짜 대박 아이디어가 당신을 기다리고 있습니다.",
     "buttons": {
       "win": "⊞ Windows 다운로드",
@@ -236,6 +244,6 @@
     "meta": "크롬·Edge 익스텐션은 설치 후 자동 안내 · 6개 언어 지원"
   },
   "footer": {
-    "rights": "© 2026 IDEATOK · ALL RIGHTS RESERVED"
+    "rights": "© 2026 Limina · ALL RIGHTS RESERVED"
   }
 }

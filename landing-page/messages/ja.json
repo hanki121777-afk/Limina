@@ -1,1 +1,249 @@
-{}
+{
+  "nav": {
+    "links": {
+      "features": "機能",
+      "workflow": "仕組み",
+      "pricing": "料金",
+      "download": "ダウンロード"
+    },
+    "auth": {
+      "login": "ログイン",
+      "signup": "新規登録",
+      "dashboard": "ダッシュボードへ"
+    },
+    "mobileToggle": "メニューを開く"
+  },
+  "hero": {
+    "badge": "ON-DEVICE AI · IDEA CAPTURE",
+    "subTitle": "あなた専用の<highlight>アイデア</highlight>配達員",
+    "desc": "PCを使う間、あなたの日常データを静かに収集します。\n本当に価値のあるアイデアが見つかった瞬間だけ、お知らせします。",
+    "descMeta": "Windows · Mac · Linux · 6言語対応",
+    "buttons": {
+      "download": "無料ダウンロード",
+      "dashboard": "ダッシュボードへ",
+      "how": "仕組みを見る"
+    }
+  },
+  "demo": {
+    "label": "02 — HOW IT WORKS",
+    "title": "ポップアップひとつで<highlight>すべてが</highlight>始まる",
+    "desc1": "いつも通りニュースを読み、YouTubeを見て、AIと対話しましょう。Liminaがバックグラウンドで静かにデータを蓄積し、本当に価値あるアイデアが見つかった瞬間だけポップアップを表示します。",
+    "desc2": "ポップアップをクリックすると、アイデアの骨組みとステップ別AIプロンプトが用意されています。ワンクリックでコピーして、お好みのAIにすぐ質問できます。",
+    "card": {
+      "logo": "LIMINA",
+      "gradeBadge": "GOLD · 9.2/10",
+      "score": "// 4日分のデータ融合分析完了",
+      "title": "マンション向けドローン専用\n盗難防止スマート受取ボックス",
+      "context": "ドローン配達規制緩和ニュース × 荷物盗難クリップボードテキスト",
+      "desc": "ドローン配達時代にマンションのベランダに設置するスマート受取ボックス。盗難防止ロック + 防音パッド + サブスク型サービス。",
+      "prompts": {
+        "p1": "ドローン配達市場の規模と初期ターゲット顧客層を分析してください",
+        "p2": "類似の海外サービスとの差別化ポイントを3つ提案してください",
+        "p3": "月額$9.90サブスクリプションベースの6ヶ月収益シミュレーション"
+      },
+      "btnCopy": "プロンプトをコピー →",
+      "copiedText": "コピー完了 ✓",
+      "btnSave": "保管庫"
+    }
+  },
+  "analysis": {
+    "label": "03 — AI ANALYSIS",
+    "title": "あなたの日常が<highlight>アイデアに</highlight>変換される",
+    "desc": "収集されたテキストログをAIが静かに分析します。パターンを見つけ、スコアをつけ、8点以上の時だけお知らせします。",
+    "stats": {
+      "retention": {
+        "num": "7<unit>日</unit>",
+        "label": "ローリングデータ保持"
+      },
+      "alert": {
+        "num": "8<unit>点+</unit>",
+        "label": "通知最低基準"
+      },
+      "lag": {
+        "num": "0<unit>ラグ</unit>",
+        "label": "アイドル時のみ実行"
+      }
+    },
+    "code": {
+      "title": "daily_log.txt → idea_analysis.py",
+      "panelLeftLabel": "COLLECTED DATA (RAW)",
+      "panelRightLabel": "AI ANALYSIS RESULT",
+      "resultText": "GOLDアイデア捕捉",
+      "resultBadge": "通知送信 →",
+      "linesLeft": {
+        "l1": "[09:14 ニュース] ドローン配達規制緩和",
+        "l2": "[11:30 YouTube] スマートホームサブスクモデル",
+        "l3": "[13:05 クリップボード] 荷物盗難被害…",
+        "l4": "[15:22 ニュース] マンションセキュリティ強化法",
+        "l5": "[16:40 メッセージ] うちもまた盗まれた",
+        "l6": "[18:10 YouTube] 無人宅配ボックスレビュー",
+        "l7": "[19:30 検索]「一人暮らしセキュリティ対策」",
+        "l8": "[20:15 ニュース] AIドローン市場2030年予測",
+        "l9": "[21:05 クリップボード] サブスク型SaaSモデル",
+        "l10": "[22:30 メモ] ベランダ＝ドローンドック？",
+        "l11": "[23:45 YouTube] IoTセキュリティトレンド"
+      }
+    }
+  },
+  "features": {
+    "label": "04 — FEATURES",
+    "title": "スパムをオフ、<highlight>インスピレーション</highlight>をオン",
+    "desc": "無理にアイデアを絞り出しません。本当に価値のある瞬間だけ通知します。",
+    "items": {
+      "gatekeeper": {
+        "title": "2段階ゲートキーパー",
+        "desc": "データ密度チェック後にAIスコアリング。8点以上のみ通知。低スコアは静かに破棄されます。"
+      },
+      "rolling": {
+        "title": "7日間ローリングシナジー",
+        "desc": "1週間分のデータをまるごと分析。月曜のニュースと木曜のメモが出会い、優れたビジネスアイデアが生まれます。"
+      },
+      "idle": {
+        "title": "アイドルタイム分析",
+        "desc": "PCがアイドル状態の時だけAIを起動。通常利用中はテキストを静かに収集。ゼロラグ保証。"
+      },
+      "custom": {
+        "title": "関心分野カスタマイズ",
+        "desc": "初期設定した関心カテゴリーをAIが反映。あなたに合ったアイデアだけが届きます。"
+      },
+      "ondevice": {
+        "title": "完全オンデバイス",
+        "desc": "すべてのデータはPC内にのみ保存。外部サーバーへの送信なし。分析時のみAPIを呼び出し。"
+      },
+      "prompts": {
+        "title": "ステップ別AIプロンプト",
+        "desc": "アイデアごとに3〜5個の検証プロンプトを提供。ワンクリックコピーでAIと事業計画をスタート。"
+      }
+    }
+  },
+  "workflow": {
+    "label": "05 — WORKFLOW",
+    "title": "収集からインスピレーションまで<highlight>自動で</highlight>",
+    "desc": "インストール後は何もする必要はありません。いつも通りPCを使うだけです。",
+    "steps": {
+      "step1": {
+        "title": "リアルタイム収集",
+        "desc": "Chrome/Edge拡張機能 + デスクトップアプリがYouTube、ニュース、AIチャット、オフィスファイル、クリップボードからテキストのみを静かに収集。Windows、Mac、Linuxすべて対応。",
+        "tag": "AI OFF · ゼロラグ"
+      },
+      "step2": {
+        "title": "7日間ローリング保存",
+        "desc": "直近7日間のデータを常に保持。古いデータと新しいデータが出会いクロスシナジーを生み出します。",
+        "tag": "8日目に自動破棄"
+      },
+      "step3": {
+        "title": "アイドルタイム分析",
+        "desc": "PCがアイドル状態の時、2段階ゲートを通過したデータのみクラウドAIで分析。8点未満は静かに破棄。",
+        "tag": "Claude API (Haiku · Sonnet)"
+      },
+      "step4": {
+        "title": "インスピレーション配達",
+        "desc": "GOLDアイデアが捕捉された瞬間だけポップアップ通知。Webダッシュボードでアイデアの骨組み + 5つのステップ別プロンプトを確認し、外部AIにすぐトス。",
+        "tag": "ワンクリックコピー → AIにトス"
+      }
+    }
+  },
+  "insight": {
+    "label": "06 — IDEA DASHBOARD",
+    "title": "捕捉されたアイデアを<highlight>一目で</highlight>",
+    "desc": "生成されたアイデアをWebダッシュボードでいつでも確認。お気に入りのアイデアはスターで保存。",
+    "pulseCard": {
+      "title": "Idea Archive · 5月第3週",
+      "subLabel": "CAPTURED IDEAS · リスト / ★ お気に入り / 削除",
+      "item1": {
+        "title": "ドローンスマート受取ボックス",
+        "meta": "収集4日 · ドローンニュース × 荷物盗難クリップボード",
+        "b1": "ドローン配達規制緩和 + マンションセキュリティニーズの融合",
+        "b2": "サブスク型ハードウェアSaaSモデル適用可能"
+      },
+      "item2": {
+        "title": "RPGルーティン管理アプリ",
+        "meta": "収集2日 · ゲームYouTube × 一人暮らしレシピ",
+        "b1": "ゲーミフィケーション生産性ツールのトレンドに一致",
+        "b2": "一人暮らし向けアプリ市場のブルーオーシャン可能性"
+      }
+    },
+    "chartCard": {
+      "title": "IDEA SCORE DISTRIBUTION",
+      "categories": {
+        "news": "ニュース",
+        "youtube": "YouTube",
+        "ai": "AIチャット"
+      },
+      "legend": {
+        "gold": "GOLD",
+        "silver": "SILVER",
+        "burned": "BURNED"
+      },
+      "footer": {
+        "gold": "GOLD捕捉",
+        "silver": "SILVER捕捉",
+        "starred": "★ お気に入り",
+        "best": "最高スコア"
+      }
+    },
+    "nav": {
+      "list": "全リスト",
+      "starred": "★ お気に入り",
+      "detail": "詳細を見る"
+    }
+  },
+  "pricing": {
+    "label": "07 — PRICING",
+    "title": "シンプルな<highlight>料金プラン</highlight>",
+    "desc": "インストールは無料。本当に素晴らしいアイデアが必要な時にアップグレード。",
+    "free": {
+      "tier": "FREE",
+      "amount": "0",
+      "unit": "USD",
+      "period": "永久無料",
+      "features": {
+        "f1": "SILVER / REPORT 通知",
+        "f2": "月10回通知",
+        "f3": "30日間アイデア保存",
+        "f4": "Chrome & Edge拡張機能付き"
+      },
+      "btn": "無料で始める"
+    },
+    "pro": {
+      "tier": "PRO",
+      "amount": "9.90",
+      "unit": "USD",
+      "period": "/ 月 · いつでも解約可能",
+      "features": {
+        "f1": "GOLDティア解放",
+        "f2": "Claude Sonnet API分析",
+        "f3": "無制限通知",
+        "f4": "ステップ別プロンプト5個",
+        "f5": "アイデア無制限保存"
+      },
+      "btn": "Proを始める"
+    },
+    "yearly": {
+      "tier": "1年パス",
+      "amount": "69.00",
+      "unit": "USD",
+      "period": "アーリーバード · 40%オフ",
+      "features": {
+        "f1": "Pro 1年利用",
+        "f2": "月額比40%お得",
+        "f3": "アーリーバード限定特典",
+        "f4": "優先サポート"
+      },
+      "btn": "アーリーバードを購入"
+    }
+  },
+  "cta": {
+    "title": "今日から<highlight>アイデアを</highlight>見逃さない",
+    "desc": "セットアップ2分。その後はいつも通りPCを使うだけ。\n本当に素晴らしいアイデアがあなたを待っています。",
+    "buttons": {
+      "win": "⊞ Windows版ダウンロード",
+      "mac": "⌘ Mac版ダウンロード",
+      "linux": "🐧 Linux版ダウンロード"
+    },
+    "meta": "拡張機能はインストール後に自動案内 · 6言語対応"
+  },
+  "footer": {
+    "rights": "© 2026 Limina · ALL RIGHTS RESERVED"
+  }
+}

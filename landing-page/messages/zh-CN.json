@@ -1,1 +1,249 @@
-{}
+{
+  "nav": {
+    "links": {
+      "features": "功能",
+      "workflow": "工作流程",
+      "pricing": "定价",
+      "download": "下载"
+    },
+    "auth": {
+      "login": "登录",
+      "signup": "注册",
+      "dashboard": "前往控制台"
+    },
+    "mobileToggle": "打开菜单"
+  },
+  "hero": {
+    "badge": "ON-DEVICE AI · IDEA CAPTURE",
+    "subTitle": "你的专属<highlight>创意</highlight>快递员",
+    "desc": "在你使用电脑的同时，静静地收集你的日常数据。\n只在真正有价值的创意被发现时，才会通知你。",
+    "descMeta": "支持 Windows · Mac · Linux · 6种语言",
+    "buttons": {
+      "download": "免费下载",
+      "dashboard": "前往控制台",
+      "how": "了解工作原理"
+    }
+  },
+  "demo": {
+    "label": "02 — HOW IT WORKS",
+    "title": "一个弹窗，<highlight>一切</highlight>开始",
+    "desc1": "像往常一样阅读新闻、观看YouTube、与AI对话。Limina在后台静静积累数据，只在发现真正有价值的创意时才弹出通知。",
+    "desc2": "点击弹窗，你会发现创意框架和分步AI提示词已经准备好了。一键复制，直接向你的AI提问。",
+    "card": {
+      "logo": "LIMINA",
+      "gradeBadge": "GOLD · 9.2/10",
+      "score": "// 4天数据融合分析完成",
+      "title": "公寓无人机专用\n防盗智能收取箱",
+      "context": "无人机配送规制放宽新闻 × 快递被盗剪贴板文本",
+      "desc": "无人机配送时代，安装在公寓阳台上的智能收取箱。防盗锁 + 隔音垫 + 订阅制服务。",
+      "prompts": {
+        "p1": "分析无人机配送市场规模和初始目标客户群",
+        "p2": "提出与类似海外服务的3个差异化优势",
+        "p3": "基于每月$9.90订阅的6个月收入模拟"
+      },
+      "btnCopy": "复制提示词 →",
+      "copiedText": "复制成功 ✓",
+      "btnSave": "收藏"
+    }
+  },
+  "analysis": {
+    "label": "03 — AI ANALYSIS",
+    "title": "你的日常被<highlight>转化为创意</highlight>",
+    "desc": "AI静静地分析收集的文本日志。发现模式，打分，只在8分以上时通知你。",
+    "stats": {
+      "retention": {
+        "num": "7<unit>天</unit>",
+        "label": "滚动数据保留"
+      },
+      "alert": {
+        "num": "8<unit>分+</unit>",
+        "label": "通知最低标准"
+      },
+      "lag": {
+        "num": "0<unit>延迟</unit>",
+        "label": "仅在空闲时运行"
+      }
+    },
+    "code": {
+      "title": "daily_log.txt → idea_analysis.py",
+      "panelLeftLabel": "COLLECTED DATA (RAW)",
+      "panelRightLabel": "AI ANALYSIS RESULT",
+      "resultText": "GOLD 创意捕获",
+      "resultBadge": "发送通知 →",
+      "linesLeft": {
+        "l1": "[09:14 新闻] 无人机配送规制放宽",
+        "l2": "[11:30 YouTube] 智能家居订阅模式",
+        "l3": "[13:05 剪贴板] 快递被盗损失…",
+        "l4": "[15:22 新闻] 公寓安防强化法",
+        "l5": "[16:40 消息] 我们家又被偷了",
+        "l6": "[18:10 YouTube] 无人快递柜评测",
+        "l7": "[19:30 搜索]「独居安全解决方案」",
+        "l8": "[20:15 新闻] AI无人机市场2030预测",
+        "l9": "[21:05 剪贴板] 订阅型SaaS模式",
+        "l10": "[22:30 备忘录] 阳台 = 无人机停靠站？",
+        "l11": "[23:45 YouTube] IoT安防趋势"
+      }
+    }
+  },
+  "features": {
+    "label": "04 — FEATURES",
+    "title": "关掉垃圾信息，开启<highlight>灵感</highlight>",
+    "desc": "不强迫你思考。只在真正有价值的时刻通知你。",
+    "items": {
+      "gatekeeper": {
+        "title": "两步守门员",
+        "desc": "数据密度检查后进行AI评分。仅8分以上通知。低分静默丢弃。"
+      },
+      "rolling": {
+        "title": "7天滚动协同",
+        "desc": "整周数据一起分析。周一的新闻和周四的备忘录相遇，诞生出色的商业创意。"
+      },
+      "idle": {
+        "title": "空闲时分析",
+        "desc": "仅在电脑空闲时唤醒AI。日常使用时只静静收集文本。零延迟保证。"
+      },
+      "custom": {
+        "title": "兴趣定制",
+        "desc": "AI反映你初始设置的兴趣类别。只有适合你的创意才会被推送。"
+      },
+      "ondevice": {
+        "title": "完全本地化",
+        "desc": "所有数据仅存储在你的电脑上。不传输到外部服务器。仅分析时调用API。"
+      },
+      "prompts": {
+        "title": "分步AI提示词",
+        "desc": "每个创意提供3-5个验证提示词。一键复制，与你的AI开始商业规划。"
+      }
+    }
+  },
+  "workflow": {
+    "label": "05 — WORKFLOW",
+    "title": "从收集到灵感，<highlight>全自动</highlight>",
+    "desc": "安装后无需任何操作。像平常一样使用电脑即可。",
+    "steps": {
+      "step1": {
+        "title": "实时收集",
+        "desc": "Chrome/Edge扩展 + 桌面应用静默收集YouTube、新闻、AI对话、办公文档和剪贴板的纯文本。支持Windows、Mac和Linux。",
+        "tag": "AI OFF · 零延迟"
+      },
+      "step2": {
+        "title": "7天滚动存储",
+        "desc": "始终保留最近7天数据。旧数据与新数据相遇，产生交叉协同效应。",
+        "tag": "第8天自动销毁"
+      },
+      "step3": {
+        "title": "空闲时分析",
+        "desc": "电脑空闲时，仅通过两步筛选的数据由云端AI分析。8分以下静默丢弃。",
+        "tag": "Claude API (Haiku · Sonnet)"
+      },
+      "step4": {
+        "title": "灵感推送",
+        "desc": "仅在GOLD创意被捕获时弹出通知。在Web控制台查看创意框架 + 5个分步提示词，直接传递给外部AI。",
+        "tag": "一键复制 → 传给AI"
+      }
+    }
+  },
+  "insight": {
+    "label": "06 — IDEA DASHBOARD",
+    "title": "捕获的创意<highlight>一目了然</highlight>",
+    "desc": "随时在Web控制台查看生成的创意。喜欢的创意用星标保存。",
+    "pulseCard": {
+      "title": "Idea Archive · 5月第3周",
+      "subLabel": "CAPTURED IDEAS · 列表 / ★ 收藏 / 删除",
+      "item1": {
+        "title": "无人机智能收取箱",
+        "meta": "收集4天 · 无人机新闻 × 快递被盗剪贴板",
+        "b1": "无人机配送规制放宽 + 公寓安防需求融合",
+        "b2": "可应用订阅型硬件SaaS模式"
+      },
+      "item2": {
+        "title": "RPG日程管理App",
+        "meta": "收集2天 · 游戏YouTube × 独居食谱",
+        "b1": "与游戏化生产力工具趋势一致",
+        "b2": "独居目标App市场蓝海可能性"
+      }
+    },
+    "chartCard": {
+      "title": "IDEA SCORE DISTRIBUTION",
+      "categories": {
+        "news": "新闻",
+        "youtube": "YouTube",
+        "ai": "AI对话"
+      },
+      "legend": {
+        "gold": "GOLD",
+        "silver": "SILVER",
+        "burned": "BURNED"
+      },
+      "footer": {
+        "gold": "GOLD捕获",
+        "silver": "SILVER捕获",
+        "starred": "★ 收藏",
+        "best": "最高分"
+      }
+    },
+    "nav": {
+      "list": "完整列表",
+      "starred": "★ 收藏夹",
+      "detail": "查看详情"
+    }
+  },
+  "pricing": {
+    "label": "07 — PRICING",
+    "title": "简单<highlight>定价</highlight>",
+    "desc": "免费安装。需要真正好创意时再升级。",
+    "free": {
+      "tier": "FREE",
+      "amount": "0",
+      "unit": "USD",
+      "period": "永久免费",
+      "features": {
+        "f1": "SILVER / REPORT 通知",
+        "f2": "每月10次通知",
+        "f3": "30天创意保存",
+        "f4": "含Chrome & Edge扩展"
+      },
+      "btn": "免费开始"
+    },
+    "pro": {
+      "tier": "PRO",
+      "amount": "9.90",
+      "unit": "USD",
+      "period": "/ 月 · 随时取消",
+      "features": {
+        "f1": "解锁GOLD等级",
+        "f2": "Claude Sonnet API分析",
+        "f3": "无限通知",
+        "f4": "5个分步提示词",
+        "f5": "无限创意保存"
+      },
+      "btn": "开始Pro"
+    },
+    "yearly": {
+      "tier": "1年通行证",
+      "amount": "69.00",
+      "unit": "USD",
+      "period": "早鸟优惠 · 40%折扣",
+      "features": {
+        "f1": "Pro 1年使用权",
+        "f2": "比月付节省40%",
+        "f3": "早鸟专属福利",
+        "f4": "优先客服支持"
+      },
+      "btn": "购买早鸟优惠"
+    }
+  },
+  "cta": {
+    "title": "从今天起不再错过<highlight>好创意</highlight>",
+    "desc": "2分钟设置。之后像平常一样使用电脑即可。\n真正的好创意正在等着你。",
+    "buttons": {
+      "win": "⊞ 下载Windows版",
+      "mac": "⌘ 下载Mac版",
+      "linux": "🐧 下载Linux版"
+    },
+    "meta": "扩展程序安装后自动引导 · 支持6种语言"
+  },
+  "footer": {
+    "rights": "© 2026 Limina · ALL RIGHTS RESERVED"
+  }
+}

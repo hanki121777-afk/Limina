@@ -1,6 +1,6 @@
-# IdeaTok 디자인 시스템 (design.md)
+﻿# Limina 디자인 시스템 (design.md)
 
-> 이 문서는 IdeaTok의 모든 UI에서 **일관된 비주얼**을 유지하기 위한 디자인 시스템입니다.
+> 이 문서는 Limina의 모든 UI에서 **일관된 비주얼**을 유지하기 위한 디자인 시스템입니다.
 > 데스크톱 앱, 크롬·Edge 익스텐션, 웹 대시보드, 랜딩페이지 — 4개 컴포넌트 모두 동일하게 적용됩니다.
 
 ---
@@ -32,17 +32,17 @@
 ```css
 --border:         rgba(255,255,255,0.08)   /* 기본 보더 */
 --border-strong:  rgba(255,255,255,0.14)   /* 호버/강조 보더 */
---border-focus:   #06b6d4                  /* 포커스 시 시안 */
+--border-focus:   #27E0A1                  /* 포커스 시 시안 */
 ```
 
 ### 2-3. 포인트 컬러 (시안)
 
 ```css
---cyan:        #06b6d4               /* 메인 포인트 */
---cyan-hover:  #22d3ee               /* 호버 시 약간 밝게 */
---cyan-dim:    rgba(6,182,212,0.5)   /* 흐린 시안 */
---cyan-soft:   rgba(6,182,212,0.08)  /* 배경 틴트 */
---cyan-glow:   rgba(6,182,212,0.25)  /* 글로우/그림자 */
+--cyan:        #27E0A1               /* 메인 포인트 */
+--cyan-hover:  #4de8b3               /* 호버 시 약간 밝게 */
+--cyan-dim:    rgba(39,224,161,0.5)   /* 흐린 시안 */
+--cyan-soft:   rgba(39,224,161,0.08)  /* 배경 틴트 */
+--cyan-glow:   rgba(39,224,161,0.25)  /* 글로우/그림자 */
 ```
 
 ### 2-4. 텍스트 컬러
@@ -57,7 +57,7 @@
 ### 2-5. 등급 컬러 (Grade)
 
 ```css
---grade-gold:   #06b6d4    /* GOLD = 시안 (대박 강조) */
+--grade-gold:   #27E0A1    /* GOLD = 시안 (대박 강조) */
 --grade-silver: #94a3b8    /* SILVER = 차분한 회색 */
 --grade-bronze: #64748b    /* BRONZE = 더 흐린 회색 */
 --grade-report: #475569    /* REPORT = 가장 차분 */
@@ -578,8 +578,8 @@ OS 알림 시스템 사용. 좌측 라인 컬러로 등급 구분.
 
 ```css
 background-image:
-  linear-gradient(rgba(6,182,212,0.05) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(6,182,212,0.05) 1px, transparent 1px);
+  linear-gradient(rgba(39,224,161,0.05) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(39,224,161,0.05) 1px, transparent 1px);
 background-size: 64px 64px;
 mask: linear-gradient(to bottom,
   rgba(0,0,0,0.85) 0%,
@@ -625,11 +625,11 @@ mask: linear-gradient(to bottom,
 
 ### 8-2. 로고
 
-- 전구(💡) 아이콘 + "IdeaTok" 텍스트
+- 전구(💡) 아이콘 + "Limina" 텍스트
 - 전구는 시안 단색
-- "Idea" 흰색, "Tok" 시안
+- "Limina" 전체 흰색
 - 아이콘과 텍스트 사이 gap 0~4px (붙여서)
-- 다국어 환경에서도 "IdeaTok" 영문 유지 (브랜드명 고정)
+- 다국어 환경에서도 "Limina" 영문 유지 (브랜드명 고정)
 
 ---
 
@@ -699,7 +699,7 @@ new Intl.NumberFormat(locale, { style: 'currency', currency: 'KRW' }).format(990
 
 ## 11. 다크 모드 전용
 
-IdeaTok은 **다크 모드 전용**입니다.
+Limina은 **다크 모드 전용**입니다.
 라이트 모드 지원 안 함. 모든 컴포넌트는 #0a0a0a 배경 기준으로만 디자인.
 
 라이트 모드 요청은 v3 이후 검토.

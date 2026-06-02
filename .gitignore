@@ -29,8 +29,9 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.claude/
 *.swp
 
 # Electron
 release/
-dist_electron/
+dist-electron/

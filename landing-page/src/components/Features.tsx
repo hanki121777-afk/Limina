@@ -8,9 +8,9 @@ export default function Features() {
       <div className="features-header">
         <p className="section-label">{t('features.label')}</p>
         <h2 className="h-section">
-          {t('features.title').split('영감만')[0]}<br />
-          <em>영감만</em><br />
-          {t('features.title').split('영감만')[1]}
+          {t.rich('features.title', {
+            highlight: (chunks) => <><br /><em>{chunks}</em><br /></>
+          })}
         </h2>
         <p>{t('features.desc')}</p>
       </div>

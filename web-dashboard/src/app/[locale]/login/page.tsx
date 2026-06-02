@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -19,7 +19,7 @@ export default function LoginPage() {
     try {
       await signInWithOAuth('google', locale);
     } catch (err: any) {
-      setErrorMsg(err.message || '소셜 로그인 중 오류가 발생했습니다.');
+      setErrorMsg(err.message || t('errorOAuth'));
     }
   };
 
@@ -34,7 +34,10 @@ export default function LoginPage() {
         {/* 상단: 홈가기 버튼 */}
         <div className="flex justify-between items-center">
           <button 
-            onClick={() => router.push(`/${locale}`)}
+            onClick={() => {
+              const landingUrl = process.env.NEXT_PUBLIC_LANDING_URL || 'http://localhost:3001';
+              window.location.href = `${landingUrl}/${locale}`;
+            }}
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-zinc-400 border border-zinc-800 rounded hover:text-white hover:border-zinc-700 transition-all font-mono active:scale-95"
           >
             &lt; Home
@@ -47,18 +50,18 @@ export default function LoginPage() {
           <div className="flex flex-col items-start gap-1">
             <div className="flex items-center gap-2 mb-3">
               <Image 
-                src="/assets/ideatik-icon-cyan.png" 
-                alt="IdeaTok Logo" 
+                src="/assets/limina-icon-cyan.png" 
+                alt="Limina Logo" 
                 width={32} 
                 height={32} 
                 className="block"
               />
               <span className="text-xl font-bold tracking-tight text-white font-en">
-                Idea<em className="text-cyan-400 not-italic">Tok</em>
+                Lim<em className="text-white not-italic">ina</em>
               </span>
             </div>
             <h2 className="text-3xl font-medium tracking-tight text-white font-en">
-              Welcome Back
+              {t('welcomeBack')}
             </h2>
             <p className="text-sm text-zinc-500">
               {t('meta') || 'Login to your account'}
@@ -94,10 +97,10 @@ export default function LoginPage() {
         {/* 하단: 이용약관 */}
         <div className="max-w-sm w-full mx-auto text-center">
           <p className="text-[11px] text-zinc-600 leading-relaxed">
-            By continuing, you agree to our{' '}
-            <a href="#" className="underline hover:text-zinc-400 transition-colors">Terms of Service</a>
-            {' '}and{' '}
-            <a href="#" className="underline hover:text-zinc-400 transition-colors">Privacy Policy</a>.
+            {t('agreePre')}{' '}
+            <a href="#" className="underline hover:text-zinc-400 transition-colors">{t('termsOfService')}</a>
+            {' '}{t('agreeAnd')}{' '}
+            <a href="#" className="underline hover:text-zinc-400 transition-colors">{t('privacyPolicy')}</a>.
           </p>
         </div>
 
@@ -111,7 +114,7 @@ export default function LoginPage() {
         style={{
           backgroundImage: `
             radial-gradient(circle at center, transparent 20%, #000 90%),
-            radial-gradient(circle at center, rgba(6, 182, 212, 0.15) 0%, transparent 65%),
+            radial-gradient(circle at center, rgba(39, 224, 161, 0.15) 0%, transparent 65%),
             linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px)
           `,
@@ -122,7 +125,7 @@ export default function LoginPage() {
         {/* 중앙 타이포그래피 (엠보싱 강조 효과) */}
         <div className="relative z-10 text-center select-none">
           <h1 className="text-4xl font-medium tracking-tight text-zinc-100 font-en">
-            Start Building <span className="text-cyan-400 font-semibold drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">Great Ideas</span>
+            Start Building <span className="text-cyan-400 font-semibold drop-shadow-[0_0_15px_rgba(39,224,161,0.3)]">Great Ideas</span>
           </h1>
         </div>
 

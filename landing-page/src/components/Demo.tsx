@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -30,9 +30,9 @@ export default function Demo() {
         <div className="demo-text">
           <p className="section-label">{t('demo.label')}</p>
           <h2 className="h-section">
-            {t('demo.title').split('모든 것이')[0]}<br />
-            <em>모든 것이</em><br />
-            {t('demo.title').split('모든 것이')[1]}
+            {t.rich('demo.title', {
+              highlight: (chunks) => <><br /><em>{chunks}</em><br /></>
+            })}
           </h2>
           <p>{t('demo.desc1')}</p>
           <p>{t('demo.desc2')}</p>
@@ -42,8 +42,8 @@ export default function Demo() {
             <div className="popup-header">
               <div className="popup-logo">
                 <Image 
-                  src="/assets/ideatik-icon-cyan.png" 
-                  alt="IdeaTok Logo" 
+                  src="/assets/limina-icon-cyan.png" 
+                  alt="Limina Logo" 
                   width={22} 
                   height={22} 
                   className="rounded-[5px]"
@@ -77,7 +77,7 @@ export default function Demo() {
                 className={`btn-copy transition-all duration-200 ${copied ? 'bg-cyan text-black scale-95' : ''}`}
                 onClick={handleCopy}
               >
-                {copied ? t('demo.card.copiedText') || '복사 완료 ✓' : t('demo.card.btnCopy')}
+                {copied ? t('demo.card.copiedText') : t('demo.card.btnCopy')}
               </button>
               <button className="btn-save">{t('demo.card.btnSave')}</button>
             </div>

@@ -9,8 +9,9 @@ export default function Workflow() {
         <div className="workflow-header">
           <p className="section-label">{t('workflow.label')}</p>
           <h2 className="h-section">
-            {t('workflow.title').split('자동으로')[0]}<br />
-            <em>자동으로</em>
+            {t.rich('workflow.title', {
+              highlight: (chunks) => <><br /><em>{chunks}</em></>
+            })}
           </h2>
           <p>{t('workflow.desc')}</p>
         </div>

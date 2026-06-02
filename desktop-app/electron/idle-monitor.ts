@@ -1,4 +1,4 @@
-import { app, powerMonitor } from 'electron';
+﻿import { app, powerMonitor } from 'electron';
 import path from 'node:path';
 import fs from 'node:fs';
 
@@ -51,7 +51,7 @@ export function startIdleMonitor(): void {
       currentAbortController = new AbortController();
 
       console.log(
-        `[IdeaTok IdleMonitor] 2-min idle detected (${idleSeconds}s). Triggering analysis pipeline...`
+        `[Limina IdleMonitor] 2-min idle detected (${idleSeconds}s). Triggering analysis pipeline...`
       );
 
       if (registeredIdleCallback) {
@@ -60,7 +60,7 @@ export function startIdleMonitor(): void {
         if (logExists) {
           registeredIdleCallback(logFilePath, currentAbortController.signal);
         } else {
-          console.log('[IdeaTok IdleMonitor] daily_log.txt not found. Skipping analysis.');
+          console.log('[Limina IdleMonitor] daily_log.txt not found. Skipping analysis.');
           // abort controller 정리
           currentAbortController = null;
           isSystemIdle = false;
@@ -75,7 +75,7 @@ export function startIdleMonitor(): void {
 
       if (currentAbortController) {
         console.log(
-          '[IdeaTok IdleMonitor] User activity resumed. Aborting in-progress analysis...'
+          '[Limina IdleMonitor] User activity resumed. Aborting in-progress analysis...'
         );
         currentAbortController.abort();
         currentAbortController = null;
@@ -84,7 +84,7 @@ export function startIdleMonitor(): void {
   }, POLL_INTERVAL_MS);
 
   console.log(
-    `[IdeaTok IdleMonitor] Started. Idle threshold: ${IDLE_THRESHOLD_SECONDS}s, poll: ${POLL_INTERVAL_MS}ms`
+    `[Limina IdleMonitor] Started. Idle threshold: ${IDLE_THRESHOLD_SECONDS}s, poll: ${POLL_INTERVAL_MS}ms`
   );
 }
 
@@ -104,5 +104,5 @@ export function stopIdleMonitor(): void {
   }
 
   isSystemIdle = false;
-  console.log('[IdeaTok IdleMonitor] Stopped.');
+  console.log('[Limina IdleMonitor] Stopped.');
 }
