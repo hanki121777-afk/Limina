@@ -1,8 +1,14 @@
 {
-  "name": "desktop-app",
+  "name": "limina",
+  "description": "On-device AI business idea generator",
+  "author": "Limina Team",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hanki121777-afk/Limina.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
