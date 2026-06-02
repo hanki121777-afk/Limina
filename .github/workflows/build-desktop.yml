@@ -29,8 +29,6 @@ jobs:
       - name: Build Mac (.dmg)
         working-directory: desktop-app
         run: npm run build:mac
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Mac artifact
         uses: actions/upload-artifact@v4
@@ -63,8 +61,6 @@ jobs:
       - name: Build Linux (.AppImage)
         working-directory: desktop-app
         run: npm run build:linux
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
