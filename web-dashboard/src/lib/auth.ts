@@ -38,9 +38,18 @@ export async function signUpWithEmail(email: string, password: string, language:
  * 호스트 주소를 동적으로 감지하여 인증 완료 후 되돌아올 리다이렉트 주소를 지정합니다.
  */
 export async function signInWithOAuth(provider: Provider, locale: string) {
-  const redirectUrl = typeof window !== 'undefined' 
+  let redirectUrl = typeof window !== 'undefined' 
     ? `${window.location.origin}/${locale}/dashboard` 
     : '';
+
+  if (typeof window !== 'undefined') {
+    const searchParams = new URLSearchParams(window.location.search);
+    const redirectParam = searchParams.get('redirect');
+    if (redirectParam) {
+      const tabParam = searchParams.get('tab');
+      redirectUrl = `${window.location.origin}/${locale}/${redirectParam}${tabParam ? `?tab=${tabParam}` : ''}`;
+    }
+  }
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,

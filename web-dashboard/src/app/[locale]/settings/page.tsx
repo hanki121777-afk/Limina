@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -6,6 +6,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { supabase } from '@/lib/supabaseClient';
 import { signOut } from '@/lib/auth';
+import * as PortOne from '@portone/browser-sdk/v2';
 import {
   User, Crown, Receipt, Monitor, Sliders, Target,
   BarChart2, Ban, Bell, Lock, Database, HelpCircle,
@@ -220,6 +221,8 @@ export default function SettingsPage() {
     license_key: null,
   });
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [paymentMessage, setPaymentMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   /* ─── 통계 ─── */
   const [stats, setStats] = useState<IdeaStat>({ total: 0, gold: 0, silver: 0, bronze: 0, report: 0, avg_score: 0, starred: 0 });
@@ -441,6 +444,125 @@ export default function SettingsPage() {
       console.error('Error soft deleting recent idea:', err);
       if (userId) {
         loadStats(userId);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const paymentStatus = searchParams.get('payment');
+    if (paymentStatus === 'success') {
+      setPaymentMessage({
+        type: 'success',
+        text: locale === 'ko'
+          ? '결제가 완료되었습니다! 이제 Pro 회원의 혜택을 이용하실 수 있습니다.'
+          : 'Payment successful! You now have access to Pro tier benefits.'
+      });
+      const tab = searchParams.get('tab') || 'subscription';
+      router.replace(`/${locale}/settings?tab=${tab}`);
+    } else if (paymentStatus === 'cancel') {
+      setPaymentMessage({
+        type: 'error',
+        text: locale === 'ko'
+          ? '결제가 취소되었습니다. 다시 시도해 주세요.'
+          : 'Payment cancelled. Please try again.'
+      });
+      const tab = searchParams.get('tab') || 'subscription';
+      router.replace(`/${locale}/settings?tab=${tab}`);
+    }
+  }, [searchParams, locale, router]);
+
+  const handleUpgrade = async (planType: 'pro_monthly' | 'pro_yearly') => {
+    if (!userId || !profile.email) {
+      alert(t('common.loginRequired') || '로그인이 필요합니다.');
+      return;
+    }
+
+    setPaymentLoading(true);
+    setPaymentMessage(null);
+
+    const isKorea = locale === 'ko';
+
+    if (isKorea) {
+      try {
+        const orderId = `Limina-pro-${Date.now()}-${userId.slice(0, 8)}`;
+        const orderName = planType === 'pro_monthly' ? 'Limina Pro 월 구독' : 'Limina Pro 연 구독';
+        const amount = planType === 'pro_monthly' ? 9900 : 69000;
+
+        const response = await PortOne.requestPayment({
+          storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID || 'store-520e5ccb-f1de-4416-92d6-444f2d011f01',
+          channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY || 'channel-key-841f3914-41d9-4809-a1b7-a3cf5b00c3b8',
+          paymentId: orderId,
+          orderName: orderName,
+          totalAmount: amount,
+          currency: 'KRW',
+          payMethod: 'EASY_PAY',
+          customer: {
+            customerId: userId,
+            email: profile.email,
+          },
+          customData: {
+            user_id: userId,
+            plan: planType,
+          },
+          redirectUrl: `${window.location.origin}/${locale}/settings?tab=subscription&payment=success`
+        });
+
+        if (response && response.code !== undefined) {
+          console.error('PortOne payment failed:', response.message);
+          setPaymentMessage({
+            type: 'error',
+            text: response.message || '결제에 실패했습니다.'
+          });
+        } else {
+          setPaymentMessage({
+            type: 'success',
+            text: '결제 요청이 완료되었습니다. 잠시 후 구독 등급이 반영됩니다.'
+          });
+          // 상태 갱신
+          setTimeout(() => {
+            loadSubscriptionAndLicense(userId);
+          }, 3000);
+        }
+      } catch (err: any) {
+        console.error('PortOne payment exception:', err);
+        setPaymentMessage({
+          type: 'error',
+          text: err.message || '결제 중 오류가 발생했습니다.'
+        });
+      } finally {
+        setPaymentLoading(false);
+      }
+    } else {
+      try {
+        const priceId = planType === 'pro_monthly'
+          ? (process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_MONTHLY || 'price_1P3gS3D9dsYAmGvcqs0Q7yq_monthly')
+          : (process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_YEARLY || 'price_1P3gS3D9dsYAmGvcqs0Q7yq_yearly');
+
+        const res = await fetch('/api/checkout/stripe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            priceId,
+            locale,
+          }),
+        });
+
+        const data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || 'Failed to generate Stripe URL');
+        }
+      } catch (err: any) {
+        console.error('Stripe payment exception:', err);
+        setPaymentMessage({
+          type: 'error',
+          text: err.message || 'Stripe Checkout 생성 중 오류가 발생했습니다.'
+        });
+        setPaymentLoading(false);
       }
     }
   };
@@ -702,6 +824,17 @@ export default function SettingsPage() {
           <>
             <SectionCard title={t('subscription.title')}>
               <div className="space-y-5">
+                {/* 결제 상태 메시지 피드백 */}
+                {paymentMessage && (
+                  <div className={`p-4 rounded-xl text-sm border ${
+                    paymentMessage.type === 'success'
+                      ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
+                      : 'border-red-500/30 bg-red-500/10 text-red-400'
+                  }`}>
+                    {paymentMessage.text}
+                  </div>
+                )}
+
                 {/* 현재 플랜 */}
                 <div className="flex items-center justify-between p-4 rounded-xl border border-zinc-800 bg-zinc-900">
                   <div>
@@ -757,13 +890,65 @@ export default function SettingsPage() {
                   </div>
                 </div>
 
+                {/* 업그레이드 옵션 카드 (Free 플랜일 때만 표시) */}
+                {subscription.plan === 'free' && (
+                  <div className="mt-6 pt-6 border-t border-zinc-800/80 space-y-4">
+                    <FieldLabel label={locale === 'ko' ? 'Pro 플랜으로 업그레이드' : 'Upgrade to Pro Plan'} />
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      {locale === 'ko'
+                        ? '더 유능하고 빠른 Claude Sonnet 모델 분석, 무제한 분석 횟수, 실시간 GOLD 등급 알림 혜택을 이용하세요.'
+                        : 'Access the smarter Claude Sonnet model, unlimited analysis, and real-time GOLD tier notifications.'}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                      {/* Pro Monthly */}
+                      <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-950/40 flex flex-col justify-between space-y-4">
+                        <div>
+                          <h4 className="text-sm font-semibold text-zinc-200">{locale === 'ko' ? 'Pro 월간' : 'Pro Monthly'}</h4>
+                          <p className="text-lg font-bold text-cyan-400 mt-1">
+                            {locale === 'ko' ? '9,900원 / 월' : '$7.99 / mo'}
+                          </p>
+                        </div>
+                        <button
+                          disabled={paymentLoading}
+                          onClick={() => handleUpgrade('pro_monthly')}
+                          className="w-full py-2 text-xs font-semibold rounded-lg bg-cyan-500 text-black hover:bg-cyan-400 active:scale-98 transition-all disabled:opacity-50 cursor-pointer"
+                        >
+                          {paymentLoading ? (locale === 'ko' ? '처리 중...' : 'Processing...') : (locale === 'ko' ? '구독하기' : 'Subscribe')}
+                        </button>
+                      </div>
+
+                      {/* Pro Yearly */}
+                      <div className="p-4 rounded-xl border border-cyan-500/30 bg-cyan-500/5 flex flex-col justify-between space-y-4 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 bg-cyan-500 text-black text-[9px] font-bold px-2 py-0.5 rounded-bl-lg">
+                          40% OFF
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold text-zinc-200">{locale === 'ko' ? 'Pro 연간' : 'Pro Yearly'}</h4>
+                          <p className="text-lg font-bold text-cyan-400 mt-1">
+                            {locale === 'ko' ? '69,000원 / 년' : '$59.99 / yr'}
+                          </p>
+                        </div>
+                        <button
+                          disabled={paymentLoading}
+                          onClick={() => handleUpgrade('pro_yearly')}
+                          className="w-full py-2 text-xs font-semibold rounded-lg bg-cyan-500 text-black hover:bg-cyan-400 active:scale-98 transition-all disabled:opacity-50 cursor-pointer"
+                        >
+                          {paymentLoading ? (locale === 'ko' ? '처리 중...' : 'Processing...') : (locale === 'ko' ? '구독하기' : 'Subscribe')}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* 연간 전환 버튼 */}
                 {subscription.plan === 'pro_monthly' && (
                   <button
                     id="settings-upgrade-yearly"
-                    className="w-full rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 font-semibold py-2.5 text-sm hover:bg-cyan-500/20 active:scale-95 transition-all"
+                    disabled={paymentLoading}
+                    onClick={() => handleUpgrade('pro_yearly')}
+                    className="w-full rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 font-semibold py-2.5 text-sm hover:bg-cyan-500/20 active:scale-95 transition-all disabled:opacity-50 cursor-pointer"
                   >
-                    {t('subscription.upgradeYearly')}
+                    {paymentLoading ? (locale === 'ko' ? '처리 중...' : 'Processing...') : t('subscription.upgradeYearly')}
                   </button>
                 )}
 
@@ -772,7 +957,7 @@ export default function SettingsPage() {
                   <button
                     id="settings-cancel-subscription"
                     onClick={() => setShowCancelModal(true)}
-                    className="w-full rounded-lg border border-zinc-800 text-zinc-500 text-sm py-2.5 hover:border-red-500/30 hover:text-red-400 active:scale-95 transition-all"
+                    className="w-full rounded-lg border border-zinc-800 text-zinc-500 text-sm py-2.5 hover:border-red-500/30 hover:text-red-400 active:scale-95 transition-all cursor-pointer"
                   >
                     {t('subscription.cancelSubscription')}
                   </button>

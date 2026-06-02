@@ -1,7 +1,17 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
 export default function Pricing() {
   const t = useTranslations();
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+  const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'http://localhost:3000';
+
+  const loginUrl = `${dashboardUrl}/${locale}/login`;
+  const freeUrl = `${loginUrl}?redirect=dashboard`;
+  const upgradeUrl = `${loginUrl}?redirect=settings&tab=subscription`;
 
   return (
     <section className="pricing-section" id="pricing">
@@ -31,7 +41,7 @@ export default function Pricing() {
               <li><span className="check">→</span> {t('pricing.free.features.f3')}</li>
               <li><span className="check">→</span> {t('pricing.free.features.f4')}</li>
             </ul>
-            <a href="#" className="btn-price btn-price-outline">{t('pricing.free.btn')}</a>
+            <a href={freeUrl} className="btn-price btn-price-outline">{t('pricing.free.btn')}</a>
           </div>
           {/* PRO */}
           <div className="price-card featured">
@@ -49,7 +59,7 @@ export default function Pricing() {
               <li><span className="check">→</span> {t('pricing.pro.features.f4')}</li>
               <li><span className="check">→</span> {t('pricing.pro.features.f5')}</li>
             </ul>
-            <a href="#" className="btn-price btn-price-filled">{t('pricing.pro.btn')}</a>
+            <a href={upgradeUrl} className="btn-price btn-price-filled">{t('pricing.pro.btn')}</a>
           </div>
           {/* YEARLY */}
           <div className="price-card">
@@ -66,7 +76,7 @@ export default function Pricing() {
               <li><span className="check">→</span> {t('pricing.yearly.features.f3')}</li>
               <li><span className="check">→</span> {t('pricing.yearly.features.f4')}</li>
             </ul>
-            <a href="#" className="btn-price btn-price-outline">{t('pricing.yearly.btn')}</a>
+            <a href={upgradeUrl} className="btn-price btn-price-outline">{t('pricing.yearly.btn')}</a>
           </div>
         </div>
       </div>
